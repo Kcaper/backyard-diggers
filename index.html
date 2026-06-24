@@ -37,14 +37,17 @@
   "priceRange": "R150",
   "paymentAccepted": "Credit Card, Debit Card, Contactless",
   "currenciesAccepted": "ZAR",
+  "openingHoursSpecification": [
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"12:00","closes":"17:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday","Sunday"],"opens":"08:00","closes":"17:00"}
+  ],
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Platboom Avenue",
     "addressLocality": "Weltevreden Park, Roodepoort",
     "addressRegion": "Gauteng",
     "addressCountry": "ZA"
   },
-  "areaServed": "Johannesburg",
+  "areaServed": ["Johannesburg","Roodepoort","Weltevreden Park"],
   "sameAs": ["https://www.facebook.com/profile.php?id=61589118839099"]
 }
 </script>
@@ -629,7 +632,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     <div class="visit-grid">
       <div class="reveal">
         <div class="kv">
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h4>Where</h4><p>Platboom Avenue, Weltevreden Park, Roodepoort. Exact directions shared on booking.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h4>Where</h4><p>Weltevreden Park, Roodepoort. We share the exact address once your booking is confirmed.</p></div>
           <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 7l2 12h12l2-12M4 7l1-3h14l1 3"/></svg></div><h4>All weather</h4><p>The whole play area is undercover and shaded — rain or shine, dig's on.</p></div>
           <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div><h4>Cashless</h4><p>Card &amp; tap only (Yoco). No need to carry cash.</p></div>
           <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2"/><path d="M15 20a5 5 0 0 1 6-4"/></svg></div><h4>Parents welcome</h4><p>Shaded seating, cold drinks &amp; coffee. Relax while they play.</p></div>
@@ -638,6 +641,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       <div class="faq reveal" style="transition-delay:.08s">
         <details open><summary>Do I need to book? <span class="pm">+</span></summary><p>Yes — message us on Facebook or WhatsApp to grab a slot. Booking keeps things calm and makes sure every child gets proper machine time.</p></details>
         <details><summary>How much does it cost? <span class="pm">+</span></summary><p>R150 per person for the hour, with free chips &amp; juice for the kids included. Birthday parties are quoted to suit your group.</p></details>
+        <details><summary>When are you open? <span class="pm">+</span></summary><p>Monday to Friday 12pm–5pm, and Saturdays, Sundays &amp; public holidays 8am–5pm. Sessions run by booking, so message us to lock in your time.</p></details>
         <details><summary>What ages is it for? <span class="pm">+</span></summary><p>Backyard Diggers suits kids from around 3 or 4 right up to 12 or 13. Little ones love the micro machines, while bigger kids take on the full multi-level course — and plenty of dads get just as hooked once they're behind the controls.</p></details>
         <details><summary>What if it rains? <span class="pm">+</span></summary><p>No problem. The play area is fully undercover and shaded, so a bit of weather won't stop the dig.</p></details>
         <details><summary>Can we host a birthday party? <span class="pm">+</span></summary><p>Absolutely — it's our specialty. We keep parties small and exclusive. Message us and we'll put together a package for your group.</p></details>
@@ -660,7 +664,8 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
           <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></span><div><b>Facebook</b><a href="https://www.facebook.com/profile.php?id=61589118839099" target="_blank" rel="noopener">Backyard Diggers — message to book</a></div></li>
           <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M17 15.5c-1-.1-2-.4-2.9-.8a1 1 0 0 0-1 .2l-1.3 1.3a12 12 0 0 1-5.2-5.2l1.3-1.3a1 1 0 0 0 .2-1 9 9 0 0 1-.8-2.9 1 1 0 0 0-1-.8H4a1 1 0 0 0-1 1A14 14 0 0 0 17 20a1 1 0 0 0 1-1v-2.5a1 1 0 0 0-.9-1z"/></svg></span><div><b>WhatsApp Kathy</b><a href="https://wa.me/27732571112" target="_blank" rel="noopener">073 257 1112</a></div></li>
           <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 2v.5l8 5 8-5V7l-8 5z"/></svg></span><div><b>Email</b><a href="mailto:info@backyarddiggers.co.za">info@backyarddiggers.co.za</a></div></li>
-          <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5" fill="#1c1913"/></svg></span><div><b>Find us</b><span>Platboom Ave, Weltevreden Park</span></div></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10V6h-2v7h6v-2z"/></svg></span><div><b>Open</b><span>Mon–Fri 12–5pm · Sat, Sun &amp; public holidays 8am–5pm</span></div></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5" fill="#1c1913"/></svg></span><div><b>Find us</b><span>Weltevreden Park · address shared on booking</span></div></li>
         </ul>
         <div class="contact-cta">
           <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=61589118839099" target="_blank" rel="noopener" style="justify-content:center">
@@ -674,8 +679,8 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
         </div>
       </div>
       <div class="contact-map">
-        <iframe title="Backyard Diggers location — Weltevreden Park" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Platboom+Avenue,+Weltevreden+Park,+Roodepoort,+Johannesburg&output=embed"></iframe>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Platboom+Avenue,+Weltevreden+Park,+Roodepoort" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+        <iframe title="Backyard Diggers area — Weltevreden Park, Roodepoort" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Weltevreden+Park,+Roodepoort,+Johannesburg&output=embed"></iframe>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Weltevreden+Park,+Roodepoort" target="_blank" rel="noopener">View the area ↗</a>
       </div>
     </div>
   </div>
@@ -709,7 +714,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       <a href="https://www.facebook.com/profile.php?id=61589118839099" target="_blank" rel="noopener">Book on Facebook</a>
       <a href="https://wa.me/27732571112" target="_blank" rel="noopener">WhatsApp 073 257 1112</a>
       <a href="mailto:info@backyarddiggers.co.za">info@backyarddiggers.co.za</a>
-      <a href="#contact">Platboom Ave, Weltevreden Park</a>
+      <a href="#contact">Weltevreden Park, Roodepoort</a>
     </div>
   </div>
   <div class="foot-bottom">
