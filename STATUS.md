@@ -2,26 +2,50 @@
 _Updated: 2026-06-27_
 
 ## Now
-Big review-pass update shipped: founder story, "what happens when you arrive"
-section, on-site booking form (Netlify Forms), big green WhatsApp buttons,
-full public address (6 Platboom Avenue), facilities (secure venue, bathrooms,
-child minders, tea/coffee, staff help with controls), dads-drive-free messaging,
-reworked birthday + pricing sections, and a reviews section (hidden until real
-Google reviews are added).
+Big review-pass shipped + Google presence being set up. Working through
+Google Business Profile (last big piece).
+
+## Done today
+- Site update: founder story, "what happens when you arrive", on-site booking
+  form (Netlify Forms), WhatsApp buttons + floating button, full address
+  (6 Platboom Avenue), facilities, dads-drive-free, reworked birthday/pricing,
+  hidden reviews section.
+- SEO: absolute og:image, sitemap lastmod.
+- Favicon fix: added 48/96px PNGs + root favicon.ico (Google needs >=48px;
+  old 32px was being ignored). Live on site.
+- Google Workspace: info@backyarddiggers.co.za created + branded Gmail signature
+  (email-signature.html, Kathy Tomlinson) loaded into Gmail.
+- Google Search Console: domain property VERIFIED (existing TXT did it),
+  sitemap.xml submitted (Success, 1 page), homepage "Request indexing" done.
 
 ## Next
-- [ ] Client: in Netlify dashboard → Forms → enable email notifications to info@backyarddiggers.co.za
-- [ ] Add Google reviews link + real reviews into the script in index.html (BD_REVIEWS / BD_GOOGLE_REVIEWS_URL) once 3+ exist
-- [ ] Submit one test booking after deploy to confirm Netlify captures the "booking" form
-- [ ] Optional: confirm play-session group-size wording (currently parties "ideal 8–10")
+- [ ] Finish Google Business Profile (in progress) — categories, address,
+      hours, description (saved below), photos (cover = kids-playing-17.jpg)
+- [ ] GBP postcard verification (~5 days) — then upload 8-10 photos
+- [ ] Client: Netlify → Forms → enable email notifications to info@backyarddiggers.co.za
+- [ ] Test-submit the booking form after deploy
+- [ ] Add Google reviews link + real reviews to BD_REVIEWS in index.html once 3+ exist
+- [ ] Favicon + fresh snippet will appear in Google after next crawl (few days)
 
 ## Blocked / waiting
-- Google Business Profile reviews link (client to provide)
+- Google reviews link (needs live GBP + 3 real reviews)
+
+## GBP description (final, 519 chars, playful)
+Real diggers. Little drivers. Big fun. At Backyard Diggers, kids aged 3+ take
+the controls of real remote-control excavators and dump trucks — scooping,
+hauling and racing across a multi-level dig site. Hard hats on, hi-vis up, our
+crew on hand to help. It's all undercover, so rain or shine the dig is on.
+Parents relax in the shade with tea, coffee and cold drinks — and dads always
+get dragged in too! Birthday parties, play sessions, school groups, team
+building and treasure hunts. Only the kids pay. Come dig in!
 
 ## Decisions / notes
-- Live URL: https://inquisitive-beijinho-f1af31.netlify.app (custom domain: backyarddiggers.co.za)
+- Live URL: https://inquisitive-beijinho-f1af31.netlify.app (custom domain: backyarddiggers.co.za, www canonical)
 - Deploy: push to `main` → GitHub Action → Netlify (~90s)
-- Bookings now via on-site Netlify form (no longer Facebook) + WhatsApp 073 257 1112
-- Hard hats & hi-vis worded as "provided to wear on site" (not a paid/kept item)
-- Reviews: NO fabricated reviews — section stays hidden until real Google ones are added
-- Theme: yellow hazard / construction look (Anton + Saira Condensed + Hanken Grotesk)
+- Workspace/owner Google account: info@backyarddiggers.co.za
+- Bookings via on-site Netlify form + WhatsApp 073 257 1112 (no longer Facebook)
+- Contact: Kathy Tomlinson
+- Hard hats & hi-vis = "provided to wear on site" (not paid/kept)
+- Reviews: NO fabricated reviews — hidden until real Google ones added
+- Party size: ideal 8-10 kids. Ages 3+. Only kids pay; adults/dads/watching free.
+- Theme: yellow hazard / construction (Anton + Saira Condensed + Hanken Grotesk)
