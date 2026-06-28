@@ -1,0 +1,3 @@
+# Send the raw Netlify subdomain to the real domain (avoids duplicate content).
+# Only matches the exact production host, so deploy previews keep working.
+https://inquisitive-beijinho-f1af31.netlify.app/*  https://www.backyarddiggers.co.za/:splat  301!
