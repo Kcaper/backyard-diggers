@@ -14,7 +14,7 @@
 </script>
 
 <title>Backyard Diggers — Kids' RC Digger Party & Play Venue | Weltevreden Park, Johannesburg</title>
-<meta name="description" content="A hands-on construction playground in Weltevreden Park, Johannesburg. Kids aged 3 to 13 drive real remote-control excavators and dump trucks across a multi-level dig site. R150 per person for the hour — perfect for birthday parties, play sessions, school holidays, team building and group events." />
+<meta name="description" content="A hands-on construction playground in Weltevreden Park, Johannesburg. Kids aged 4+ drive real remote-control excavators and dump trucks across a multi-level dig site. R150 per child for the hour — perfect for birthday parties, play sessions, school holidays, team building and group events." />
 <meta name="theme-color" content="#14120e" />
 <link rel="canonical" href="https://www.backyarddiggers.co.za/" />
 
@@ -42,7 +42,7 @@
   "@context": "https://schema.org",
   "@type": "AmusementPark",
   "name": "Backyard Diggers",
-  "description": "Hands-on construction-themed play and party venue where children aged 3 to 13 drive real remote-control excavators and dump trucks across a multi-level dig site. Birthday parties, play sessions, school raffle prizes, team building and treasure-hunt event stops.",
+  "description": "Hands-on construction-themed play and party venue where children aged 4+ drive real remote-control excavators and dump trucks across a multi-level dig site. Birthday parties, play sessions, school raffle prizes, team building and treasure-hunt event stops.",
   "image": "https://www.backyarddiggers.co.za/assets/img/og-image.jpg",
   "url": "https://www.backyarddiggers.co.za/",
   "telephone": "+27 73 257 1112",
@@ -386,6 +386,17 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .perk svg{width:22px;height:22px;fill:var(--lime);flex-shrink:0}
 .perk b{color:var(--lime)}
 
+/* video switcher */
+.vid-thumbs{display:flex;gap:9px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.vid-thumb{width:64px;height:50px;border-radius:7px;overflow:hidden;border:2px solid var(--line);cursor:pointer;padding:0;background:#000;position:relative;transition:border-color .2s,transform .15s}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:.7;transition:opacity .2s}
+.vid-thumb:hover{transform:translateY(-2px)}
+.vid-thumb:hover img{opacity:.95}
+.vid-thumb.active{border-color:var(--yellow)}
+.vid-thumb.active img{opacity:1}
+.vid-thumb::after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:.7rem;text-shadow:0 1px 3px #000;pointer-events:none}
+.vid-thumb.active::after{opacity:0}
+
 /* birthday gallery */
 .bday-thumbs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
 .bday-thumbs img{border-radius:8px;border:1px solid var(--line);width:100%;object-fit:cover;aspect-ratio:4/3}
@@ -400,11 +411,15 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--yellow)}
 .field textarea{min-height:92px;resize:vertical}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.book-aside{background:var(--ink-3);border:1px solid var(--line);border-radius:14px;padding:30px 28px}
-.book-aside h3{font-size:1.5rem;margin-bottom:12px}
-.book-aside p{color:var(--bone-dim);margin-bottom:18px}
-.book-aside .or{display:flex;align-items:center;gap:12px;color:var(--bone-dim);font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;margin:22px 0}
-.book-aside .or::before,.book-aside .or::after{content:"";flex:1;height:1px;background:var(--line)}
+.book-lead{max-width:640px;margin:0 auto}
+.book-wa-panel{background:var(--ink-3);border:1px solid var(--line);border-top:4px solid var(--wa);border-radius:14px;padding:32px 28px;text-align:center}
+.book-wa-panel h3{font-size:1.7rem;margin-bottom:8px}
+.book-wa-panel>p{color:var(--bone-dim);margin-bottom:20px;max-width:440px;margin-left:auto;margin-right:auto}
+.book-wa-panel .btn-wa{font-size:1.12rem;padding:16px 28px}
+.book-wa-panel .contact-list{margin:24px auto 0;text-align:left;display:inline-block}
+.book-or{text-align:center;margin:28px auto 20px;max-width:640px;font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:.82rem;color:var(--bone-dim);display:flex;align-items:center;gap:14px}
+.book-or::before,.book-or::after{content:"";flex:1;height:1px;background:var(--line)}
+.book .booking-form{max-width:640px;margin:0 auto}
 .form-status{margin-top:10px;font-weight:600;display:none}
 .form-status.show{display:block}
 .form-status.ok{color:var(--lime)}
@@ -497,7 +512,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       <div class="stat-row">
         <div class="stat"><b>15+</b><span>RC machines</span></div>
         <div class="stat"><b>Multi</b><span>Level dig site</span></div>
-        <div class="stat"><b>3–13</b><span>Ages welcome</span></div>
+        <div class="stat"><b>4+</b><span>Ages welcome</span></div>
         <div class="stat"><b>100%</b><span>Undercover &amp; shaded</span></div>
       </div>
     </div>
@@ -574,7 +589,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       <div class="step reveal" style="transition-delay:.1s">
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="3"/><path d="M7 12.5h2M8 11.5v2"/><circle cx="16" cy="12" r="1"/><circle cx="18.5" cy="13.5" r="1"/></svg></div>
         <h3>Controls 101</h3>
-        <p>Our staff show every child how the machines work — and stay on hand to help and assist with the remote controls right through the session.</p>
+        <p>Our RC trainers show every child how the machines work — and stay right on hand to help with the remote controls all the way through the session.</p>
       </div>
       <div class="step reveal">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 16V9h8l2 3h5v4"/><path d="M3 16h15"/><circle cx="7" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></svg></div>
@@ -588,16 +603,16 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       </div>
       <div class="step reveal" style="transition-delay:.1s">
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2"/><path d="M15 20a5 5 0 0 1 6-4"/></svg></div>
-        <h3>Dads dive in</h3>
-        <p>Dads, this one's for you — jump on the controls, get dirty with the kids and have an absolute jol. The big kids get just as hooked as the little ones.</p>
+        <h3>Parents dive in</h3>
+        <p>Mom and Dad, this one's for you — jump on the controls, get dirty with the kids and have an absolute jol. The grown-ups get just as hooked as the little ones.</p>
       </div>
     </div>
 
     <div class="perks reveal">
-      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg><b>Dads drive for free</b></div>
-      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Only kids pay — <b>adults don't</b></div>
-      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg><b>Watching is free</b></div>
-      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Staff <b>help with the controls</b></div>
+      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg><b>Dads drive for free</b> — moms too</div>
+      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Parents play along <b>free</b> with their kids</div>
+      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg><b>Ages 4+</b> — no upper limit</div>
+      <div class="perk"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg><b>RC trainers</b> on site</div>
     </div>
 
     <p class="price-note reveal" style="margin-top:24px">Hosting a birthday? Groups can add <strong>party packs, colours &amp; décor</strong>, and you're welcome to <strong>bring your own snacks and drinks</strong>. Just mention it when you book.</p>
@@ -617,9 +632,15 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
   <div class="wrap video-grid">
     <div class="phone reveal">
       <div class="phone-frame">
-        <video controls preload="none" playsinline poster="assets/img/video-poster.jpg">
+        <video id="venueVideo" controls preload="none" playsinline poster="assets/img/video-poster.jpg">
           <source src="assets/video/diggers-clip.mp4" type="video/mp4" />
         </video>
+      </div>
+      <div class="vid-thumbs" id="vidThumbs">
+        <button class="vid-thumb active" type="button" data-src="assets/video/diggers-clip.mp4" data-poster="assets/img/video-poster.jpg" aria-label="Play clip 1"><img src="assets/img/video-poster.jpg" alt="" loading="lazy"></button>
+        <button class="vid-thumb" type="button" data-src="assets/video/diggers-clip-2.mp4" data-poster="assets/video/poster-clip-2.jpg" aria-label="Play clip 2"><img src="assets/video/poster-clip-2.jpg" alt="" loading="lazy"></button>
+        <button class="vid-thumb" type="button" data-src="assets/video/diggers-clip-3.mp4" data-poster="assets/video/poster-clip-3.jpg" aria-label="Play clip 3"><img src="assets/video/poster-clip-3.jpg" alt="" loading="lazy"></button>
+        <button class="vid-thumb" type="button" data-src="assets/video/diggers-clip-4.mp4" data-poster="assets/video/poster-clip-4.jpg" aria-label="Play clip 4"><img src="assets/video/poster-clip-4.jpg" alt="" loading="lazy"></button>
       </div>
     </div>
     <div class="video-copy reveal" style="transition-delay:.08s">
@@ -685,8 +706,8 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
         <div class="per">per child · for the hour</div>
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Full access to the dig site &amp; machines</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Only kids pay — adults &amp; watching are free</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Suited to kids from about 3 to 13</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Kids pay — parents play along free with them</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Suited to kids aged 4+, no upper limit</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Free chips &amp; juice for the kids</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Hard hats &amp; hi-vis provided to wear on site</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Staff on hand to help with the controls</li>
@@ -702,12 +723,12 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Plenty of wheel time per child</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Add party packs, colours &amp; décor</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Bring your own snacks &amp; drinks</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Dads drive for free</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Dads drive for free — moms too</li>
         </ul>
         <a class="btn btn-ghost" href="#book" style="width:100%;justify-content:center">Get a Party Quote</a>
       </div>
     </div>
-    <p class="price-note reveal">Sessions run by booking so it never gets chaotic and every kid gets machine time. <b>Book online below</b> or message us on WhatsApp for available times. <b>Cashless premises</b> — card &amp; tap accepted.</p>
+    <p class="price-note reveal">Sessions run by booking so it never gets chaotic and every kid gets machine time. <b>Book online below</b> or message us on WhatsApp for available times. <b>Cashless premises</b> — card &amp; tap accepted.<br><span style="color:var(--bone-dim)">Parents play along free when they're here with their kids. Adult-only outings — team building &amp; corporate events — are priced per group; just ask for a quote.</span></p>
   </div>
 </section>
 
@@ -811,15 +832,15 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
           <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div><h4>Secure &amp; supervised</h4><p>Safe, enclosed venue with clean bathrooms and friendly child minders on site.</p></div>
           <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 7l2 12h12l2-12M4 7l1-3h14l1 3"/></svg></div><h4>All weather</h4><p>The whole play area is undercover and shaded — rain or shine, dig's on.</p></div>
           <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 9h12v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/><path d="M7 5v1m4-1v1"/></svg></div><h4>Tea, coffee &amp; cold drinks</h4><p>Shaded parent seating with tea, coffee and cool drinks. Sit back while they play.</p></div>
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="9" width="12" height="7" rx="2"/><path d="M9 13h1m4 0h1M10 9V7a2 2 0 0 1 4 0v2"/></svg></div><h4>Staff on hand</h4><p>Our team shows the kids how the machines work and helps with the controls all session.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="9" width="12" height="7" rx="2"/><path d="M9 13h1m4 0h1M10 9V7a2 2 0 0 1 4 0v2"/></svg></div><h4>RC trainers on site</h4><p>Our remote-control helpers show the kids the ropes and stay on hand with the controls all session.</p></div>
           <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div><h4>Cashless</h4><p>Card &amp; tap only (Yoco). No need to carry cash.</p></div>
         </div>
       </div>
       <div class="faq reveal" style="transition-delay:.08s">
         <details open><summary>Do I need to book? <span class="pm">+</span></summary><p>Yes — use the <a href="#book" style="color:var(--yellow)">booking form</a> below, or WhatsApp us on 073&nbsp;257&nbsp;1112 to grab a slot. Booking keeps things calm and makes sure every child gets proper machine time.</p></details>
-        <details><summary>How much does it cost? <span class="pm">+</span></summary><p>R150 per child for the hour, with free chips &amp; juice for the kids. Only kids pay — adults, watching parents and dads on the controls are all free. Hard hats and hi-vis are provided to wear on site. Birthday parties are quoted to suit your group.</p></details>
+        <details><summary>How much does it cost? <span class="pm">+</span></summary><p>R150 per child for the hour, with free chips &amp; juice for the kids. Parents play along free when they're here with their kids — so moms and dads can jump on the controls at no charge. Hard hats and hi-vis are provided to wear on site. Birthday parties are quoted to suit your group, and adult-only outings (team building &amp; corporate events) are priced per group — just ask.</p></details>
         <details><summary>When are you open? <span class="pm">+</span></summary><p>Monday to Friday 12pm–5pm, and Saturdays, Sundays &amp; public holidays 8am–5pm. Sessions run by booking, so message us to lock in your time.</p></details>
-        <details><summary>What ages is it for? <span class="pm">+</span></summary><p>Backyard Diggers suits kids from around 3 or 4 right up to 12 or 13. Little ones love the micro machines, while bigger kids take on the full multi-level course — and plenty of dads get just as hooked once they're behind the controls.</p></details>
+        <details><summary>What ages is it for? <span class="pm">+</span></summary><p>Backyard Diggers is built for kids aged 4 and up, with no upper limit. Little ones love the micro machines, bigger kids take on the full multi-level course — and plenty of moms and dads get just as hooked once they're behind the controls.</p></details>
         <details><summary>What if it rains? <span class="pm">+</span></summary><p>No problem. The play area is fully undercover and shaded, so a bit of weather won't stop the dig.</p></details>
         <details><summary>Can we host a birthday party? <span class="pm">+</span></summary><p>Absolutely — it's our specialty. We keep parties small and exclusive. Message us and we'll put together a package for your group.</p></details>
         <details><summary>Do you do schools, team building or events? <span class="pm">+</span></summary><p>Yes! We offer play-session tickets as school raffle prizes, run hands-on team-building challenges for companies, and make a great stop on a treasure hunt or city-wide challenge. Message us and we'll tailor something to suit.</p></details>
@@ -835,8 +856,27 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
       <div class="eyebrow">Book your spot</div>
       <h2>Reserve a <span class="y">slot</span></h2>
-      <p style="margin:0 auto">Fill in the form and we'll confirm your booking by WhatsApp or email. Prefer to chat? Hit the big green button.</p>
+      <p style="margin:0 auto">The quickest way to book is a quick WhatsApp message — tap below and we'll sort your slot. Prefer a form? It's right underneath.</p>
     </div>
+
+    <div class="book-lead reveal">
+      <div class="book-wa-panel">
+        <h3>Book in seconds on <span class="y">WhatsApp</span></h3>
+        <p>Most people book this way — send us a message and we'll confirm your slot in a couple of replies. Quick, easy and a fast response.</p>
+        <a class="btn btn-wa" href="https://wa.me/27732571112?text=Hi%20Backyard%20Diggers%2C%20I%27d%20like%20to%20book%20a%20slot." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17 15.5c-1-.1-2-.4-2.9-.8a1 1 0 0 0-1 .2l-1.3 1.3a12 12 0 0 1-5.2-5.2l1.3-1.3a1 1 0 0 0 .2-1 9 9 0 0 1-.8-2.9 1 1 0 0 0-1-.8H4a1 1 0 0 0-1 1A14 14 0 0 0 17 20a1 1 0 0 0 1-1v-2.5a1 1 0 0 0-.9-1z"/></svg>
+          WhatsApp 073 257 1112
+        </a>
+        <ul class="contact-list">
+          <li><span class="ic" style="background:var(--ink)"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 2v.5l8 5 8-5V7l-8 5z"/></svg></span><div><b>Email</b><a href="mailto:info@backyarddiggers.co.za">info@backyarddiggers.co.za</a></div></li>
+          <li><span class="ic" style="background:var(--ink)"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5" fill="#1c1913"/></svg></span><div><b>Find us</b><span>6 Platboom Avenue, Weltevreden Park</span></div></li>
+          <li><span class="ic" style="background:var(--ink)"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10V6h-2v7h6v-2z"/></svg></span><div><b>Open</b><span>Mon–Fri 12–5pm · Sat, Sun &amp; public holidays 8am–5pm</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="book-or reveal">or fill in the booking form</div>
+
     <div class="book-grid">
       <form class="booking-form reveal" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="bookingForm">
         <input type="hidden" name="form-name" value="booking" />
@@ -865,20 +905,6 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
         <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Send booking request</button>
         <p class="form-status" id="bookStatus" role="status" aria-live="polite"></p>
       </form>
-      <aside class="book-aside reveal" style="transition-delay:.08s">
-        <h3>Rather book on WhatsApp?</h3>
-        <p>Tap below and we'll sort your slot in a couple of messages — quick, easy and a fast reply.</p>
-        <a class="btn btn-wa" href="https://wa.me/27732571112?text=Hi%20Backyard%20Diggers%2C%20I%27d%20like%20to%20book%20a%20slot." target="_blank" rel="noopener" style="width:100%;justify-content:center">
-          <svg viewBox="0 0 24 24"><path d="M17 15.5c-1-.1-2-.4-2.9-.8a1 1 0 0 0-1 .2l-1.3 1.3a12 12 0 0 1-5.2-5.2l1.3-1.3a1 1 0 0 0 .2-1 9 9 0 0 1-.8-2.9 1 1 0 0 0-1-.8H4a1 1 0 0 0-1 1A14 14 0 0 0 17 20a1 1 0 0 0 1-1v-2.5a1 1 0 0 0-.9-1z"/></svg>
-          WhatsApp 073 257 1112
-        </a>
-        <div class="or">or</div>
-        <ul class="contact-list">
-          <li><span class="ic" style="background:var(--ink)"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 2v.5l8 5 8-5V7l-8 5z"/></svg></span><div><b>Email</b><a href="mailto:info@backyarddiggers.co.za">info@backyarddiggers.co.za</a></div></li>
-          <li><span class="ic" style="background:var(--ink)"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5" fill="#1c1913"/></svg></span><div><b>Find us</b><span>6 Platboom Avenue, Weltevreden Park</span></div></li>
-          <li><span class="ic" style="background:var(--ink)"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10V6h-2v7h6v-2z"/></svg></span><div><b>Open</b><span>Mon–Fri 12–5pm · Sat, Sun &amp; public holidays 8am–5pm</span></div></li>
-        </ul>
-      </aside>
     </div>
   </div>
 </section>
@@ -991,6 +1017,23 @@ const closeLb = ()=>{ lb.classList.remove('open'); lbImg.src=''; };
 document.getElementById('lbClose').addEventListener('click', closeLb);
 lb.addEventListener('click', e=>{ if(e.target===lb) closeLb(); });
 addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
+
+// ----- video switcher -----
+const vidThumbs = document.getElementById('vidThumbs');
+if(vidThumbs){
+  const v = document.getElementById('venueVideo');
+  const source = v.querySelector('source');
+  vidThumbs.addEventListener('click', e=>{
+    const b = e.target.closest('.vid-thumb'); if(!b) return;
+    vidThumbs.querySelectorAll('.vid-thumb').forEach(t=>t.classList.remove('active'));
+    b.classList.add('active');
+    v.pause();
+    source.src = b.dataset.src;
+    v.poster = b.dataset.poster;
+    v.load();
+    v.play().catch(()=>{});
+  });
+}
 
 // ----- booking form (Netlify AJAX submit, stays on page) -----
 const bookingForm = document.getElementById('bookingForm');
