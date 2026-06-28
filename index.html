@@ -35,7 +35,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero.jpg" />
+<link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" />
 
 <script type="application/ld+json">
 {
@@ -141,7 +141,7 @@ header.site.scrolled{background:rgba(13,12,9,.94)}
 
 /* ---------- HERO ---------- */
 .hero{min-height:92vh;display:flex;align-items:flex-end;position:relative;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('assets/img/hero.jpg') center 38%/cover no-repeat;transform:scale(1.06)}
+.hero-bg{position:absolute;inset:0;background:url('assets/img/hero.webp') center 38%/cover no-repeat;transform:scale(1.06)}
 .hero::before{content:"";position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(13,12,9,.55) 0%,rgba(13,12,9,.2) 35%,rgba(13,12,9,.82) 86%,var(--ink) 100%),
   linear-gradient(90deg,rgba(13,12,9,.78) 0%,rgba(13,12,9,.15) 60%);z-index:1}
@@ -198,7 +198,7 @@ header.site.scrolled{background:rgba(13,12,9,.94)}
 .card p{color:var(--bone-dim);font-size:.98rem;line-height:1.55}
 
 /* band parallax divider */
-.band{height:48vh;min-height:340px;background:url('assets/img/track-wide.jpg') center 30%/cover no-repeat;background-attachment:fixed;position:relative;display:grid;place-items:center;text-align:center}
+.band{height:48vh;min-height:340px;background:url('assets/img/track-wide.webp') center 30%/cover no-repeat;background-attachment:fixed;position:relative;display:grid;place-items:center;text-align:center}
 @supports (-webkit-touch-callout: none){.band{background-attachment:scroll}}
 .band::before{content:"";position:absolute;inset:0;background:rgba(13,12,9,.6)}
 .band-inner{position:relative;z-index:2;padding:0 22px}
@@ -321,7 +321,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .card-cta{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-family:"Saira Condensed",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.9rem;color:var(--yellow)}
 .card-cta svg{width:17px;height:17px;fill:none;stroke:var(--yellow);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
 .card:hover .card-cta svg{transform:translateX(4px)}
-.band--events{background-image:url('assets/img/kids-playing-20.jpg');background-position:center 44%}
+.band--events{background-image:url('assets/img/kids-playing-20.webp');background-position:center 44%}
 
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:980px){
@@ -521,7 +521,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     </div>
     <div class="about-photo reveal" style="transition-delay:.1s">
       <div class="photo-frame"></div>
-      <img src="assets/img/diggers-action.jpg" alt="Remote-control excavators and dump trucks parked on the sandy dig course at Backyard Diggers" loading="lazy" />
+      <img src="assets/img/diggers-action.webp" alt="Remote-control excavators and dump trucks parked on the sandy dig course at Backyard Diggers" loading="lazy" />
       <div class="photo-tag">Real machines. Real digging.</div>
     </div>
   </div>
@@ -664,10 +664,10 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 <section class="sec parties" id="parties">
   <div class="wrap party-grid">
     <div class="party-photo reveal">
-      <img src="assets/img/birthday-party-06.jpg" alt="Themed Backyard Diggers birthday party with a Happy Birthday banner and construction balloons across the venue" loading="lazy" />
+      <img src="assets/img/birthday-party-06.webp" alt="Themed Backyard Diggers birthday party with a Happy Birthday banner and construction balloons across the venue" loading="lazy" />
       <div class="bday-thumbs">
-        <img src="assets/img/birthday-party-08.jpg" alt="Two happy children in blue and pink hard hats and hi-vis vests at a Backyard Diggers birthday party" loading="lazy" />
-        <img src="assets/img/birthday-party-09.jpg" alt="A group of kids in hard hats and hi-vis vests playing together at a Backyard Diggers birthday party" loading="lazy" />
+        <img src="assets/img/birthday-party-08.webp" alt="Two happy children in blue and pink hard hats and hi-vis vests at a Backyard Diggers birthday party" loading="lazy" />
+        <img src="assets/img/birthday-party-09.webp" alt="A group of kids in hard hats and hi-vis vests playing together at a Backyard Diggers birthday party" loading="lazy" />
       </div>
     </div>
     <div class="party-copy reveal" style="transition-delay:.08s">
@@ -783,21 +783,21 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       <p>Honest snaps from the site — diggers, the dig course, the fleet and the full undercover setup.</p>
     </div>
     <div class="gal-grid reveal" id="galGrid">
-      <figure><img src="assets/img/track-wide.jpg" alt="Wide view of the multi-level dig course under the striped shade netting" loading="lazy"><figcaption>The multi-level dig course</figcaption></figure>
-      <figure><img src="assets/img/fleet.jpg" alt="Shelf of numbered remote-control construction vehicles" loading="lazy"><figcaption>The machine fleet</figcaption></figure>
-      <figure><img src="assets/img/hands-on.jpg" alt="A remote-control excavator beside its controller on the play table" loading="lazy"><figcaption>Take the controls</figcaption></figure>
-      <figure><img src="assets/img/themed-signage.jpg" alt="Construction theming with road signs and a digger on a raised platform" loading="lazy"><figcaption>Fully themed site</figcaption></figure>
-      <figure><img src="assets/img/loader-detail.jpg" alt="Front loader and dump truck on the upper level beside a 20 speed sign" loading="lazy"><figcaption>Load &amp; haul</figcaption></figure>
-      <figure><img src="assets/img/sandpit.jpg" alt="Close up of the sand dig area with ramps and rocks" loading="lazy"><figcaption>Dig, ramp &amp; rubble</figcaption></figure>
-      <figure><img src="assets/img/track-levels.jpg" alt="Upper track level with suspended walkways and deep excavation signs" loading="lazy"><figcaption>Levels on levels</figcaption></figure>
-      <figure><img src="assets/img/entry-gear.jpg" alt="Hi-vis vests and hard hats hanging at the entrance to Backyard Diggers" loading="lazy"><figcaption>Gear up at the gate</figcaption></figure>
-      <figure><img src="assets/img/safety-reps.jpg" alt="A playful site safety board listing cartoon characters as the health and safety reps" loading="lazy"><figcaption>Our (very serious) safety reps</figcaption></figure>
-      <figure><img src="assets/img/kids-playing-13.jpg" alt="A delighted child in a pink hard hat driving a remote-control dump truck at Backyard Diggers" loading="lazy"><figcaption>Pure delight on the controls</figcaption></figure>
-      <figure><img src="assets/img/birthday-party-06.jpg" alt="Themed birthday party setup with a Happy Birthday banner and construction balloons" loading="lazy"><figcaption>Birthday HQ</figcaption></figure>
-      <figure><img src="assets/img/kids-playing-17.jpg" alt="A young operator in a blue hard hat beside the deep excavation sign on the dig course" loading="lazy"><figcaption>Deep excavation ahead</figcaption></figure>
-      <figure><img src="assets/img/trucks-course-22.jpg" alt="A child steering a remote-control dump truck along the sandy course under the shade netting" loading="lazy"><figcaption>Hauling the load</figcaption></figure>
-      <figure><img src="assets/img/birthday-party-09.jpg" alt="A group of children in hard hats and hi-vis vests playing together at a birthday party" loading="lazy"><figcaption>The party crew</figcaption></figure>
-      <figure><img src="assets/img/trucks-course-19.jpg" alt="Close-up of a remote-control front loader on the multi-level dig course" loading="lazy"><figcaption>Machines up close</figcaption></figure>
+      <figure><img src="assets/img/track-wide.webp" alt="Wide view of the multi-level dig course under the striped shade netting" loading="lazy"><figcaption>The multi-level dig course</figcaption></figure>
+      <figure><img src="assets/img/fleet.webp" alt="Shelf of numbered remote-control construction vehicles" loading="lazy"><figcaption>The machine fleet</figcaption></figure>
+      <figure><img src="assets/img/hands-on.webp" alt="A remote-control excavator beside its controller on the play table" loading="lazy"><figcaption>Take the controls</figcaption></figure>
+      <figure><img src="assets/img/themed-signage.webp" alt="Construction theming with road signs and a digger on a raised platform" loading="lazy"><figcaption>Fully themed site</figcaption></figure>
+      <figure><img src="assets/img/loader-detail.webp" alt="Front loader and dump truck on the upper level beside a 20 speed sign" loading="lazy"><figcaption>Load &amp; haul</figcaption></figure>
+      <figure><img src="assets/img/sandpit.webp" alt="Close up of the sand dig area with ramps and rocks" loading="lazy"><figcaption>Dig, ramp &amp; rubble</figcaption></figure>
+      <figure><img src="assets/img/track-levels.webp" alt="Upper track level with suspended walkways and deep excavation signs" loading="lazy"><figcaption>Levels on levels</figcaption></figure>
+      <figure><img src="assets/img/entry-gear.webp" alt="Hi-vis vests and hard hats hanging at the entrance to Backyard Diggers" loading="lazy"><figcaption>Gear up at the gate</figcaption></figure>
+      <figure><img src="assets/img/safety-reps.webp" alt="A playful site safety board listing cartoon characters as the health and safety reps" loading="lazy"><figcaption>Our (very serious) safety reps</figcaption></figure>
+      <figure><img src="assets/img/kids-playing-13.webp" alt="A delighted child in a pink hard hat driving a remote-control dump truck at Backyard Diggers" loading="lazy"><figcaption>Pure delight on the controls</figcaption></figure>
+      <figure><img src="assets/img/birthday-party-06.webp" alt="Themed birthday party setup with a Happy Birthday banner and construction balloons" loading="lazy"><figcaption>Birthday HQ</figcaption></figure>
+      <figure><img src="assets/img/kids-playing-17.webp" alt="A young operator in a blue hard hat beside the deep excavation sign on the dig course" loading="lazy"><figcaption>Deep excavation ahead</figcaption></figure>
+      <figure><img src="assets/img/trucks-course-22.webp" alt="A child steering a remote-control dump truck along the sandy course under the shade netting" loading="lazy"><figcaption>Hauling the load</figcaption></figure>
+      <figure><img src="assets/img/birthday-party-09.webp" alt="A group of children in hard hats and hi-vis vests playing together at a birthday party" loading="lazy"><figcaption>The party crew</figcaption></figure>
+      <figure><img src="assets/img/trucks-course-19.webp" alt="Close-up of a remote-control front loader on the multi-level dig course" loading="lazy"><figcaption>Machines up close</figcaption></figure>
     </div>
   </div>
 </section>
