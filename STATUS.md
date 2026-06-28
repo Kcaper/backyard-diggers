@@ -54,7 +54,7 @@ Google Business Profile (last big piece).
 - Confirm which Google account owns the GBP (should be info@backyarddiggers.co.za).
 - Google reviews link (needs verified GBP)
 - GBP photo bundle ready at ~/Websites/2026/BackyardDiggers/Google-Business-Photos (15 files)
-- Hours: GBP set with different hours than site — update site to match once user provides them.
+- Hours: DONE — site now matches GBP (Mon-Fri 9-19, Sat-Sun 7-21, public hols with weekend).
 
 ## GBP description (final, 519 chars, playful)
 Real diggers. Little drivers. Big fun. At Backyard Diggers, kids aged 3+ take
