@@ -1,6 +1,16 @@
 # Status — backyard-diggers
 _Updated: 2026-06-28_
 
+## SEO pass (2026-06-28) — all 7 loops closed
+1. Images -> WebP: 7.2MB -> 2.7MB (~62% lighter). og-image + video-poster stay JPG.
+2. _headers: static assets cache 1yr; HTML must-revalidate.
+3. Meta description trimmed 287 -> 161 chars.
+4. Title trimmed 85 -> 57 chars.
+5. _redirects: raw netlify.app host 301 -> custom domain.
+6. Schema enriched: geo coords, hasMap, slogan; postcode left out (unconfirmed).
+7. OG tags completed (image dims/alt, site_name, locale en_ZA); no Twitter (not a channel).
+Note: if swapping an image, use a NEW filename (1yr cache). Postcode still TBC.
+
 ## Latest changes (2026-06-28)
 - Ages: now "4+" with no upper limit (meta, schema, stats, pricing, FAQ).
 - Adult pricing reworked: parents play FREE with their kids; adult-only events
