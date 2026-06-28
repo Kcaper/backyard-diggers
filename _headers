@@ -1,0 +1,14 @@
+# Cache static assets aggressively — they rarely change.
+# (If you ever swap an image, keep a NEW filename so returning
+#  visitors fetch the fresh one instead of a cached copy.)
+/assets/*
+  Cache-Control: public, max-age=31536000
+
+/favicon.ico
+  Cache-Control: public, max-age=31536000
+
+# HTML must stay fresh so content/price changes appear immediately.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
