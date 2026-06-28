@@ -403,12 +403,15 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 
 /* booking */
 .book{background:linear-gradient(180deg,var(--ink-2),var(--char))}
-.book-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+.book-grid{display:block}
 .booking-form{background:var(--ink-3);border:1px solid var(--line);border-radius:14px;padding:32px 30px}
 .field{margin-bottom:16px}
 .field label{display:block;font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;color:var(--bone-dim);margin-bottom:6px}
 .field input,.field select,.field textarea{width:100%;background:var(--ink);border:1px solid var(--line);border-radius:7px;padding:12px 14px;color:var(--bone);font-family:inherit;font-size:1rem}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--yellow)}
+.field input[type="date"]{cursor:pointer}
+.field input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.85);opacity:.7;cursor:pointer}
+.field input[type="date"]:hover::-webkit-calendar-picker-indicator{opacity:1}
 .field textarea{min-height:92px;resize:vertical}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .book-lead{max-width:640px;margin:0 auto}
@@ -578,8 +581,8 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     <div class="steps">
       <div class="step reveal">
         <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h3>Arrive &amp; check in</h3>
-        <p>You've already booked your slot, so just rock up at your time. Sign on as site foreman for the day and you're ready to roll.</p>
+        <h3>Roll onto site</h3>
+        <p>You've already booked, so just rock up at your slot — no queues, no admin. Head straight in, meet the crew and get ready to dig.</p>
       </div>
       <div class="step reveal" style="transition-delay:.05s">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 16h16"/><path d="M6 16a6 6 0 0 1 12 0"/><path d="M12 7V5"/></svg></div>
@@ -1033,6 +1036,12 @@ if(vidThumbs){
     v.load();
     v.play().catch(()=>{});
   });
+}
+
+// ----- date field: open calendar picker on click (desktop) -----
+const dateField = document.getElementById('bk-date');
+if(dateField && typeof dateField.showPicker === 'function'){
+  dateField.addEventListener('click', ()=>{ try{ dateField.showPicker(); }catch(e){} });
 }
 
 // ----- booking form (Netlify AJAX submit, stays on page) -----
