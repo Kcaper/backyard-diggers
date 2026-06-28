@@ -1,5 +1,14 @@
 # Status — backyard-diggers
-_Updated: 2026-06-27_
+_Updated: 2026-06-28_
+
+## Latest changes (2026-06-28)
+- Ages: now "4+" with no upper limit (meta, schema, stats, pricing, FAQ).
+- Adult pricing reworked: parents play FREE with their kids; adult-only events
+  (team building/corporate) are paid per group. "Dads drive free — moms too".
+  Removed "watching is free".
+- "Staff help with controls" -> "RC trainers on site".
+- Video section: added 3 more clips (576x1024) with a thumbnail switcher.
+- Booking flow: WhatsApp panel now ABOVE the form; form is secondary.
 
 ## Now
 Big review-pass shipped + Google presence being set up. Working through
