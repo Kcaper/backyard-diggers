@@ -49,7 +49,12 @@ Google Business Profile (last big piece).
 - [ ] Favicon + fresh snippet will appear in Google after next crawl (few days)
 
 ## Blocked / waiting
-- Google reviews link (needs live GBP + 3 real reviews)
+- Google Business Profile: SET UP, awaiting verification (~by 2026-07-02, postcard).
+  Profile not public until verified. Reviews link only available after verification.
+- Confirm which Google account owns the GBP (should be info@backyarddiggers.co.za).
+- Google reviews link (needs verified GBP)
+- GBP photo bundle ready at ~/Websites/2026/BackyardDiggers/Google-Business-Photos (15 files)
+- Hours: GBP set with different hours than site — update site to match once user provides them.
 
 ## GBP description (final, 519 chars, playful)
 Real diggers. Little drivers. Big fun. At Backyard Diggers, kids aged 3+ take
