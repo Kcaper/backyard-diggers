@@ -31,8 +31,9 @@ Google Business Profile (last big piece).
 - [ ] Finish Google Business Profile (in progress) — categories, address,
       hours, description (saved below), photos (cover = kids-playing-17.jpg)
 - [ ] GBP postcard verification (~5 days) — then upload 8-10 photos
-- [ ] Client: Netlify → Forms → enable email notifications to info@backyarddiggers.co.za
-- [ ] Test-submit the booking form after deploy
+- [x] Booking form emails — DONE: enabled form detection (ignore_html_forms was true),
+      form registered, email notification -> info@backyarddiggers.co.za, end-to-end
+      test submission recorded by Netlify. (Verify the test email landed / not in spam.)
 - [ ] Add Google reviews link + real reviews to BD_REVIEWS in index.html once 3+ exist
 - [ ] Favicon + fresh snippet will appear in Google after next crawl (few days)
 
