@@ -10,6 +10,7 @@ _Updated: 2026-06-28_
 6. Schema enriched: geo coords, hasMap, slogan; postcode left out (unconfirmed).
 7. OG tags completed (image dims/alt, site_name, locale en_ZA); no Twitter (not a channel).
 Note: if swapping an image, use a NEW filename (1yr cache). Postcode still TBC.
+Re-index requested in Search Console 2026-06-28 (after title/desc/image/schema changes).
 
 ## Latest changes (2026-06-28)
 - Ages: now "4+" with no upper limit (meta, schema, stats, pricing, FAQ).
