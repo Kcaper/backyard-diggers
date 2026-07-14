@@ -39,6 +39,12 @@ Google Business Profile (last big piece).
   sitemap.xml submitted (Success, 1 page), homepage "Request indexing" done.
 
 ## Next
+- [ ] Auto-pull Google reviews (deferred 2026-07-14) — want up to 10 reviews,
+      4.5★+ only, auto-refreshing. Decision: use a third-party review widget
+      (e.g. Elfsight/EmbedSocial) connected via "Sign in with Google" —
+      Google's own Places API caps at 5 reviews and can't filter by rating.
+      No Google Cloud project/API key exists for this site. Until then,
+      BD_REVIEWS in index.html stays manual (paste-in).
 - [ ] Finish Google Business Profile (in progress) — categories, address,
       hours, description (saved below), photos (cover = kids-playing-17.jpg)
 - [ ] GBP postcard verification (~5 days) — then upload 8-10 photos
