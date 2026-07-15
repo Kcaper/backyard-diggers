@@ -1,41 +1,38 @@
 # Status — backyard-diggers
 _Updated: 2026-07-15_
 
-## Google Reviews — live, self-rendered from Featurable's data API (2026-07-15)
-Reviews section is no longer manual-paste and no longer embeds Featurable's
-official widget either — we render it ourselves now. History: Jay signed up
-at featurable.com (free plan, Google sign-in to the GBP), created widget id
-`e52b10e1-f89a-4033-8fff-e53568452e0f`. First attempt embedded their widget
-directly, but hit two dead ends:
-1. Widget renders inside an **open shadow root** — confirmed via Playwright —
-   so our site CSS structurally cannot restyle the review cards (shadow DOM
-   blocks outside styles by design). That's why Jay couldn't find "the CSS":
-   it doesn't exist in our codebase, full stop.
-2. Featurable's dashboard has **no minimum-rating filter** — confirmed by
-   inspecting the widget's own config via its public API (other unset fields
-   still appear as `null`, but there's no rating-filter key at all, on any
-   plan tier we could find). Jay wasn't missing a button; it isn't there.
+## Google Reviews — live via Featurable's official widget, final (2026-07-15)
+Settled here after trying three approaches same day — worth knowing the
+history so nobody re-litigates it:
+1. Manual-paste `BD_REVIEWS` array (original system) — replaced, not real-time.
+2. Featurable's official embed, framed in `.reviews-widget-frame` (white
+   card, yellow top border, since the widget renders in an **open shadow
+   root** — confirmed via Playwright — so our site CSS structurally cannot
+   restyle the cards inside it). Hit a wall: Featurable's dashboard has **no
+   minimum-rating filter**, confirmed by inspecting the widget's own config
+   via its public API (other unset fields still show as `null`; there's no
+   rating-filter key at all). A 4★ review showed through.
+3. Self-rendered from Featurable's public data API directly (bypassing their
+   embed entirely) — solved both the theming and the filtering, but Jay
+   found the resulting cards "a bit fake" despite matching the site's colors
+   (no profile photos, no Google branding, no relative timestamps — the
+   things that read as *authentic* rather than *on-brand*).
 
-**Fix:** `https://api.featurable.com/v2/widgets/<uuid>` is a public,
-unauthenticated GET — the same JSON their embed.js fetches to render, just
-consumed directly by us instead. `loadReviews()` (end of index.html) fetches
-it client-side on page load, filters to `rating >= 4`, sorts best+newest
-first, caps at 10, and renders into `.review-grid`/`.review-card` (restored
-— same dark-theme classes the original manual system used). Reviewer
-surnames are shortened to an initial ourselves ("Marco Mariska" -> "Marco M.")
-since Featurable's widget did that automatically and our direct fetch bypasses
-it — this was privacy-sensitive, don't skip it if this code is ever touched.
-The "Read all our Google reviews" button uses the real Google Maps
-write-a-review link from `gbpLocationSummary.writeAReviewUri` in the API
-response (found via that same endpoint) — better than Featurable's own
-redirect-wrapped version, and possibly reusable for the QR-code-on-venue idea
-Jay mentioned earlier, still not done.
+**Landed on: back to (2), Featurable's official embed**, framed. Jay
+explicitly chose authenticity over strict rating filtering — the one 4★
+review is accepted as a tradeoff. Still fetches live on every page load
+(confirmed: same freshness whether embedded or self-rendered — new reviews
+appear once Featurable's backend syncs from Google, typically within a day).
+Widget id `e52b10e1-f89a-4033-8fff-e53568452e0f` (Jay's featurable.com
+account, free plan, connected via Google sign-in to the GBP).
 
-**Risk, noted deliberately:** this endpoint isn't officially documented for
-third-party use — it could change shape or get locked down without notice.
-If reviews silently stop appearing, check this first before assuming a code
-regression. `loadReviews()` fails closed (section stays hidden, console.error
-only) rather than breaking the page.
+**If reviews-widget work resumes:** `https://api.featurable.com/v2/widgets/<uuid>`
+is a public, unauthenticated GET returning the same JSON the embed fetches —
+useful for diagnostics (e.g. checking `gbpLocationSummary.writeAReviewUri`
+for a real Google Maps write-review link, better than Featurable's own
+redirect-wrapped one — possibly reusable for the QR-code-on-venue idea Jay
+mentioned earlier, still not done) — but don't reach for it as a widget
+replacement again without asking first; that door's been tried and closed.
 
 ## Party Quote Builder (2026-07-15)
 Added a self-service popup wizard (triggered by the "Get a Party Quote" button
