@@ -1,6 +1,15 @@
 # Status — backyard-diggers
 _Updated: 2026-07-15_
 
+## Follow-up (2026-07-15 evening, commit `8e3b0d6`)
+Jay asked for the venue-package wording to stop saying "1-10 children"
+(confusing now that adults count toward the 15-pax cap too) and to add
+contact number + preferred time to the quote builder. Done: venue radio
+subtext now reads "Whole venue, exclusive use — max 15 pax"; added
+`#qPhone` and `#qTime` fields (both optional), same pattern as the
+name/date fields added earlier — flow into the WhatsApp message, don't
+block sending if left empty.
+
 ## Batch of fixes/additions (2026-07-15 evening)
 Jay reported several things in one go. Done vs. still-pending below.
 
