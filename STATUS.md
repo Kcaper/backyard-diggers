@@ -1,6 +1,62 @@
 # Status — backyard-diggers
 _Updated: 2026-07-15_
 
+## Batch of fixes/additions (2026-07-15 evening)
+Jay reported several things in one go. Done vs. still-pending below.
+
+### Done, shipped
+- **Mobile fonts fixed** (commit `e39f249`) — mobile was silently rendering in
+  system fonts while desktop showed the real Anton/Saira Condensed/Hanken
+  Grotesk branding. Root cause: the earlier `display:optional` CLS fix gave
+  fonts a ~100ms budget over an external Google Fonts CDN round trip, which
+  mobile routinely missed. Fixed by self-hosting the fonts (6 files in
+  `assets/fonts/`, Latin subset only) and switching back to `display:swap` —
+  same-origin + cached means the swap window is now small and reliable.
+- **Party Quote Builder additions** (commit `b9edade`): family/contact name
+  field, preferred date field (both optional, included in the WhatsApp
+  message when filled), a cake option (checkbox, price on request — same
+  pattern as the food platter), and a **Number of adults attending** field
+  with real capacity validation — venue is 15 people max *total* (kids +
+  adults), not 15 kids alone. Over-capacity shows an inline error and
+  disables the WhatsApp send button, same UX pattern as the existing
+  children-count validation.
+- **Little Diggers Card loyalty section** (commit `59e463a`) — added right
+  after Pricing. Explains the card (free on first visit), bring-a-friend-free
+  perk (one friend per visit, must be their first time, can be a different
+  friend each visit), and the 5th-visit-free reward. Explicitly states cards
+  are issued/tracked on site via NFC — **no signup form or data collection
+  added to the website**, per Jay: the loyalty program's data handling stays
+  separate from the site entirely, this section is advertising only.
+- **"Venue hire" SEO fix** (commit `8aa18f3`) — see the entry above this one,
+  same session.
+
+### Still pending — needs info from Jay before implementing
+- **Party pack details** — Jay wants to give more detail on what's actually
+  in the normal (R50) vs deluxe (R100) party packs on the site, but said he
+  still needs to check on this himself first. Don't add speculative contents.
+- **Cake pricing** — currently "price on request" in the quote builder
+  (matches food platter). Jay wants an actual price once confirmed. Also:
+  confirm whether people can still bring their own cake/party packs/platters
+  instead of buying through Backyard Diggers (Jay mentioned this should
+  remain an option — make sure it's stated clearly once cake pricing lands).
+- **Standard platter price + contents** — same story, Jay is still checking
+  on this. The "food platter" quote-builder line item currently says "price
+  on request" — once there's a real number, wire it in the same way the
+  party-pack rates are (a fixed rand amount, not a placeholder).
+
+### Notes for whoever picks these up next
+- All 3 pending items likely land in the same place: the Party Quote Builder
+  (`#quoteModal` in index.html) — party pack `<select id="qPack">`, cake
+  `<input id="qCake">`, food platter `<input id="qFood">`. Once real prices
+  exist, follow the exact pattern already used for Party Decor (flat R900,
+  see `decorCost` in the `calc()` function) rather than inventing a new one.
+- If party pack *contents* need describing (not just price), the natural
+  spot is inline under each `<option>` — but `<select>` options can't hold
+  rich descriptions, so this may need converting `qPack` from a dropdown to
+  a radio-button group (like the venue package picker already is) so each
+  choice can show a short description underneath. Flag this to Jay before
+  doing it — it's a bigger UI change than swapping a number.
+
 ## SEO/performance audit + fixes (2026-07-15)
 Ran a real Lighthouse audit (not just manual read-through) against the live
 site, verified every finding by hand, then fixed what was fixable. Starting
