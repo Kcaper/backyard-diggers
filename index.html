@@ -379,8 +379,8 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .quote-check label{display:flex;align-items:center;gap:10px;font-family:"Hanken Grotesk",sans-serif;font-weight:600;text-transform:none;letter-spacing:0;font-size:1rem;cursor:pointer}
 .quote-check input{accent-color:var(--yellow);width:17px;height:17px}
 .quote-hint{color:var(--bone-dim);font-size:.85rem;margin-top:6px}
-#qChildren,#qAdults,#qPack,#qName,#qDate{width:100%;background:var(--ink-3);border:1px solid var(--line);color:var(--bone);border-radius:8px;padding:11px 14px;font-family:"Hanken Grotesk",sans-serif;font-size:1rem}
-#qChildren:focus,#qAdults:focus,#qPack:focus,#qName:focus,#qDate:focus{outline:none;border-color:var(--yellow)}
+#qChildren,#qAdults,#qPack,#qName,#qPhone,#qDate,#qTime{width:100%;background:var(--ink-3);border:1px solid var(--line);color:var(--bone);border-radius:8px;padding:11px 14px;font-family:"Hanken Grotesk",sans-serif;font-size:1rem}
+#qChildren:focus,#qAdults:focus,#qPack:focus,#qName:focus,#qPhone:focus,#qDate:focus,#qTime:focus{outline:none;border-color:var(--yellow)}
 #qChildren.invalid,#qAdults.invalid{border-color:var(--red)}
 #qDate{color-scheme:dark}
 .quote-error{color:var(--red);font-size:.85rem;margin-top:6px;display:none}
@@ -1111,15 +1111,25 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     </div>
 
     <div class="quote-field">
+      <label for="qPhone">Contact number <small>(optional)</small></label>
+      <input type="tel" id="qPhone" placeholder="073 000 0000" autocomplete="tel">
+    </div>
+
+    <div class="quote-field">
       <label for="qDate">Preferred party date <small>(optional)</small></label>
       <input type="date" id="qDate">
     </div>
 
     <div class="quote-field">
-      <label>Venue package</label>
+      <label for="qTime">Preferred time <small>(optional)</small></label>
+      <input type="text" id="qTime" placeholder="e.g. Sat morning" autocomplete="off">
+    </div>
+
+    <div class="quote-field">
+      <label>Venue hire</label>
       <div class="quote-radio-group">
-        <label class="quote-radio"><input type="radio" name="qVenue" value="a" checked><span><b>Option A</b> — R1,200 for 1 hour<br><small>1–10 children, exclusive use of the venue</small></span></label>
-        <label class="quote-radio"><input type="radio" name="qVenue" value="b"><span><b>Option B</b> — R2,000 for 2 hours<br><small>1–10 children, exclusive use of the venue</small></span></label>
+        <label class="quote-radio"><input type="radio" name="qVenue" value="a" checked><span><b>Option A</b> — R1,200 for 1 hour<br><small>Whole venue, exclusive use — max 15 pax</small></span></label>
+        <label class="quote-radio"><input type="radio" name="qVenue" value="b"><span><b>Option B</b> — R2,000 for 2 hours<br><small>Whole venue, exclusive use — max 15 pax</small></span></label>
       </div>
     </div>
 
@@ -1206,7 +1216,9 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
   const openBtns = document.querySelectorAll('.js-quote-open');
   const closeBtn = document.getElementById('quoteCloseBtn');
   const nameInput = document.getElementById('qName');
+  const phoneInput = document.getElementById('qPhone');
   const dateInput = document.getElementById('qDate');
+  const timeInput = document.getElementById('qTime');
   const childrenInput = document.getElementById('qChildren');
   const childrenHint = document.getElementById('qChildrenHint');
   const childrenError = document.getElementById('qChildrenError');
@@ -1306,7 +1318,9 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
       `Hi Backyard Diggers, I'd like a party quote:`,
     ];
     if (nameInput.value.trim()) lines.push(`- Family/contact: ${nameInput.value.trim()}`);
+    if (phoneInput.value.trim()) lines.push(`- Contact number: ${phoneInput.value.trim()}`);
     if (dateInput.value) lines.push(`- Preferred date: ${dateInput.value}`);
+    if (timeInput.value.trim()) lines.push(`- Preferred time: ${timeInput.value.trim()}`);
     lines.push(`- ${venueLabel} (${children} children${adults > 0 ? ` + ${adults} adults` : ''})`);
     if (extraChildren > 0) lines.push(`- ${extraChildren} last-minute addition(s) at R120/child/hour`);
     if (decorCost > 0) lines.push(`- Party Decor (R900)`);
@@ -1317,7 +1331,7 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
     waBtn.href = 'https://wa.me/27732571112?text=' + encodeURIComponent(lines.join('\n'));
   }
 
-  [decorBox, foodBox, cakeBox, packSelect, nameInput, dateInput].forEach(el => el.addEventListener('input', calc));
+  [decorBox, foodBox, cakeBox, packSelect, nameInput, phoneInput, dateInput, timeInput].forEach(el => el.addEventListener('input', calc));
   document.querySelectorAll('input[name="qVenue"]').forEach(el => el.addEventListener('change', calc));
 })();
 
