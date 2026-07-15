@@ -39,10 +39,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Loaded non-blocking (preload + swap-on-load) so the font CSS round-trip doesn't
-     delay first paint; noscript fallback covers JS-disabled visitors. -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+     delay first paint; noscript fallback covers JS-disabled visitors.
+     display=optional (not swap): if the font isn't ready almost immediately, the
+     browser keeps the fallback for this page view instead of swapping fonts in
+     mid-read — that swap was the site's biggest layout-shift (CLS) offender,
+     worse on slow connections. Repeat visits use the (by-then cached) real font. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=optional">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=optional" rel="stylesheet"></noscript>
 <link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" />
 
 <script type="application/ld+json">
