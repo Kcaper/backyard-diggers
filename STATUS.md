@@ -26,6 +26,23 @@ appear once Featurable's backend syncs from Google, typically within a day).
 Widget id `e52b10e1-f89a-4033-8fff-e53568452e0f` (Jay's featurable.com
 account, free plan, connected via Google sign-in to the GBP).
 
+**Update, same day:** Jay found Featurable's own dashboard styling controls
+(a `color_scheme` toggle and a `custom_css` textarea — both real fields,
+confirmed earlier via the widget's API config) and switched color_scheme to
+dark himself. That's a *supported* customization path, distinct from our
+site's own CSS — Featurable injects it directly into the widget's shadow
+root, which is why it can reach where our stylesheet can't. Gave Jay a
+brand-matching custom CSS block (card bg `#262017`, text `#F4EDDE`/`#ddd4c2`,
+star fill `#FFC21E`, button recolored to brand yellow, `Hanken Grotesk` font)
+to paste into that field — verified first by injecting the identical CSS
+into the live shadow root via Playwright so it was confirmed working before
+handing it over, not guessed. Real class names came from `data-featurable-classname`
+attributes Featurable puts on every element (their own documented styling
+hooks) — grep the shadow DOM for that attribute if this needs revisiting.
+Removed our `.reviews-widget-frame` white wrapper from index.html since the
+widget now dark-themes itself; its outer containers are transparent so the
+page's own dark background shows through the gaps.
+
 **If reviews-widget work resumes:** `https://api.featurable.com/v2/widgets/<uuid>`
 is a public, unauthenticated GET returning the same JSON the embed fetches —
 useful for diagnostics (e.g. checking `gbpLocationSummary.writeAReviewUri`
