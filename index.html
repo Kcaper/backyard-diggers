@@ -341,6 +341,36 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .lightbox img{max-width:92vw;max-height:88vh;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.7)}
 .lightbox .x{position:absolute;top:22px;right:26px;font-size:2.4rem;color:var(--bone);cursor:pointer;line-height:1;font-family:"Anton"}
 
+/* QUOTE WIZARD */
+.quote-modal{position:fixed;inset:0;z-index:5000;background:rgba(8,7,5,.86);display:none;align-items:flex-start;justify-content:center;padding:30px 16px;overflow-y:auto}
+.quote-modal.open{display:flex}
+.quote-panel{position:relative;width:100%;max-width:560px;margin:20px 0;background:var(--ink-2);border:1px solid var(--line);border-radius:12px;padding:34px 30px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.quote-close{position:absolute;top:14px;right:16px;background:none;border:0;font-size:2rem;line-height:1;color:var(--bone-dim);cursor:pointer;font-family:"Anton";padding:4px 8px}
+.quote-close:hover{color:var(--yellow)}
+.quote-panel h3{font-size:1.7rem;margin:6px 0 4px}
+.quote-sub{color:var(--bone-dim);margin-bottom:22px}
+.quote-field{margin-bottom:20px}
+.quote-field>label{display:block;font-family:"Saira Condensed",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.88rem;color:var(--bone);margin-bottom:8px}
+.quote-field>label small{color:var(--bone-dim);text-transform:none;letter-spacing:0;font-weight:400}
+.quote-radio-group{display:flex;flex-direction:column;gap:10px}
+.quote-radio{display:flex;align-items:flex-start;gap:10px;background:var(--ink-3);border:1px solid var(--line);border-radius:8px;padding:12px 14px;cursor:pointer;transition:border-color .15s}
+.quote-radio:has(input:checked){border-color:var(--yellow)}
+.quote-radio input{margin-top:3px;accent-color:var(--yellow)}
+.quote-radio small{display:block;color:var(--bone-dim);font-size:.85rem}
+.quote-check{background:var(--ink-3);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.quote-check label{display:flex;align-items:center;gap:10px;font-family:"Hanken Grotesk",sans-serif;font-weight:600;text-transform:none;letter-spacing:0;font-size:1rem;cursor:pointer}
+.quote-check input{accent-color:var(--yellow);width:17px;height:17px}
+.quote-hint{color:var(--bone-dim);font-size:.85rem;margin-top:6px}
+#qChildren,#qPack{width:100%;background:var(--ink-3);border:1px solid var(--line);color:var(--bone);border-radius:8px;padding:11px 14px;font-family:"Hanken Grotesk",sans-serif;font-size:1rem}
+#qChildren:focus,#qPack:focus{outline:none;border-color:var(--yellow)}
+.quote-summary{border-top:1px dashed var(--line);padding-top:16px;margin-bottom:10px}
+.quote-summary-row{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;color:var(--bone-dim);padding:4px 0}
+.quote-summary-row b{color:var(--bone);font-weight:600}
+.quote-total{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);padding:14px 0;margin-bottom:6px}
+.quote-total span:first-child{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;color:var(--bone-dim)}
+.quote-total span:last-child{font-family:"Anton";font-size:2rem;color:var(--yellow)}
+.quote-panel .btn-wa{width:100%;justify-content:center;margin-top:6px}
+
 /* reveal */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
@@ -757,7 +787,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Bring your own snacks &amp; drinks</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Dads drive for free — moms too</li>
         </ul>
-        <a class="btn btn-ghost" href="#book" style="width:100%;justify-content:center">Get a Party Quote</a>
+        <button type="button" class="btn btn-ghost" id="quoteOpenBtn" style="width:100%;justify-content:center">Get a Party Quote</button>
       </div>
     </div>
     <p class="price-note reveal">Sessions run by booking so it never gets chaotic and every kid gets machine time. <b>Book online below</b> or message us on WhatsApp for available times. <b>Cashless premises</b> — card &amp; tap accepted.<br><span style="color:var(--bone-dim)">Parents play along free when they're here with their kids. Adult-only outings — team building &amp; corporate events — are priced per group; just ask for a quote.</span></p>
@@ -1021,6 +1051,57 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox"><span class="x" id="lbClose">×</span><img id="lbImg" src="" alt="" /></div>
 
+<!-- PARTY QUOTE WIZARD -->
+<div class="quote-modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle">
+  <div class="quote-panel">
+    <button type="button" class="quote-close" id="quoteCloseBtn" aria-label="Close">×</button>
+    <div class="eyebrow">Build your own</div>
+    <h3 id="quoteModalTitle">Party Quote Builder</h3>
+    <p class="quote-sub">Pick your options — your total updates as you go. Message us the summary when you're ready.</p>
+
+    <div class="quote-field">
+      <label>Venue package</label>
+      <div class="quote-radio-group">
+        <label class="quote-radio"><input type="radio" name="qVenue" value="a" checked><span><b>Option A</b> — R1,200 for 1 hour<br><small>1–10 children, exclusive use of the venue</small></span></label>
+        <label class="quote-radio"><input type="radio" name="qVenue" value="b"><span><b>Option B</b> — R2,000 for 2 hours<br><small>1–10 children, exclusive use of the venue</small></span></label>
+      </div>
+    </div>
+
+    <div class="quote-field">
+      <label for="qChildren">Number of children <small>(max 15 pax)</small></label>
+      <input type="number" id="qChildren" min="1" max="15" value="10" inputmode="numeric">
+      <p class="quote-hint" id="qChildrenHint"></p>
+    </div>
+
+    <div class="quote-field quote-check">
+      <label><input type="checkbox" id="qDecor"> Add Party Decor — <b>R900</b></label>
+      <p class="quote-hint">Plates, cups, serviettes, balloon stand, banner &amp; a construction-theme tablecloth.</p>
+    </div>
+
+    <div class="quote-field quote-check">
+      <label><input type="checkbox" id="qFood"> Add a food platter <small>(price on request)</small></label>
+    </div>
+
+    <div class="quote-field">
+      <label for="qPack">Party packs <small>(per child)</small></label>
+      <select id="qPack">
+        <option value="0">None</option>
+        <option value="50">Party pack — R50 per child</option>
+        <option value="100">Deluxe party pack — R100 per child</option>
+      </select>
+    </div>
+
+    <div class="quote-summary" id="quoteSummary"></div>
+    <div class="quote-total"><span>Estimated total</span><span id="quoteTotal">R0</span></div>
+    <p class="quote-hint">This is an estimate — your quote is confirmed when you book. Food platter priced separately on request.</p>
+
+    <a class="btn btn-wa" id="quoteWaBtn" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17 15.5c-1-.1-2-.4-2.9-.8a1 1 0 0 0-1 .2l-1.3 1.3a12 12 0 0 1-5.2-5.2l1.3-1.3a1 1 0 0 0 .2-1 9 9 0 0 1-.8-2.9 1 1 0 0 0-1-.8H4a1 1 0 0 0-1 1A14 14 0 0 0 17 20a1 1 0 0 0 1-1v-2.5a1 1 0 0 0-.9-1z"/></svg>
+      Send This Quote on WhatsApp
+    </a>
+  </div>
+</div>
+
 <script>
 // year
 document.getElementById('yr').textContent = new Date().getFullYear();
@@ -1051,6 +1132,72 @@ const closeLb = ()=>{ lb.classList.remove('open'); lbImg.src=''; };
 document.getElementById('lbClose').addEventListener('click', closeLb);
 lb.addEventListener('click', e=>{ if(e.target===lb) closeLb(); });
 addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
+
+// ----- party quote wizard -----
+(function(){
+  const modal = document.getElementById('quoteModal');
+  const openBtn = document.getElementById('quoteOpenBtn');
+  const closeBtn = document.getElementById('quoteCloseBtn');
+  const childrenInput = document.getElementById('qChildren');
+  const childrenHint = document.getElementById('qChildrenHint');
+  const decorBox = document.getElementById('qDecor');
+  const foodBox = document.getElementById('qFood');
+  const packSelect = document.getElementById('qPack');
+  const summaryEl = document.getElementById('quoteSummary');
+  const totalEl = document.getElementById('quoteTotal');
+  const waBtn = document.getElementById('quoteWaBtn');
+  const rand = n => 'R' + n.toLocaleString('en-ZA');
+
+  const openModal = () => { modal.classList.add('open'); calc(); };
+  const closeModal = () => modal.classList.remove('open');
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+  addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  function calc(){
+    let children = Math.max(1, Math.min(15, parseInt(childrenInput.value, 10) || 1));
+    childrenInput.value = children;
+    const venue = document.querySelector('input[name="qVenue"]:checked').value;
+    const hours = venue === 'b' ? 2 : 1;
+    const venueBase = venue === 'b' ? 2000 : 1200;
+    const venueLabel = venue === 'b' ? 'Option B — R2,000 for 2 hours' : 'Option A — R1,200 for 1 hour';
+
+    const extraChildren = Math.max(0, children - 10);
+    childrenHint.textContent = extraChildren > 0
+      ? `Includes ${extraChildren} last-minute addition${extraChildren > 1 ? 's' : ''} beyond the first 10, at R120/child/hour.`
+      : '';
+    const extraCost = extraChildren * 120 * hours;
+
+    const decorCost = decorBox.checked ? 900 : 0;
+    const packRate = parseInt(packSelect.value, 10) || 0;
+    const packCost = packRate * children;
+
+    const total = venueBase + extraCost + decorCost + packCost;
+
+    const rows = [`<div class="quote-summary-row"><span>${venueLabel}</span><b>${rand(venueBase)}</b></div>`];
+    if (extraCost > 0) rows.push(`<div class="quote-summary-row"><span>Last-minute additions (${extraChildren} × R120 × ${hours}h)</span><b>${rand(extraCost)}</b></div>`);
+    if (decorCost > 0) rows.push(`<div class="quote-summary-row"><span>Party Decor</span><b>${rand(decorCost)}</b></div>`);
+    if (packCost > 0) rows.push(`<div class="quote-summary-row"><span>${packSelect.selectedOptions[0].text} × ${children}</span><b>${rand(packCost)}</b></div>`);
+    if (foodBox.checked) rows.push(`<div class="quote-summary-row"><span>Food platter</span><b>Price on request</b></div>`);
+    summaryEl.innerHTML = rows.join('');
+    totalEl.textContent = rand(total) + (foodBox.checked ? ' +' : '');
+
+    const lines = [
+      `Hi Backyard Diggers, I'd like a party quote:`,
+      `- ${venueLabel} (${children} children)`,
+    ];
+    if (extraChildren > 0) lines.push(`- ${extraChildren} last-minute addition(s) at R120/child/hour`);
+    if (decorCost > 0) lines.push(`- Party Decor (R900)`);
+    if (packCost > 0) lines.push(`- ${packSelect.selectedOptions[0].text} x ${children}`);
+    if (foodBox.checked) lines.push(`- Food platter (please quote)`);
+    lines.push(`Estimated total: ${rand(total)}${foodBox.checked ? ' + food platter' : ''}`);
+    waBtn.href = 'https://wa.me/27732571112?text=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  [childrenInput, decorBox, foodBox, packSelect].forEach(el => el.addEventListener('input', calc));
+  document.querySelectorAll('input[name="qVenue"]').forEach(el => el.addEventListener('change', calc));
+})();
 
 // ----- video switcher -----
 const vidThumbs = document.getElementById('vidThumbs');
