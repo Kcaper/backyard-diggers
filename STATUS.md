@@ -1,6 +1,36 @@
 # Status — backyard-diggers
 _Updated: 2026-07-15_
 
+## Google Reviews — live via Featurable widget (2026-07-15)
+Reviews section is no longer manual-paste. Jay signed up at featurable.com
+(free plan, connected via Google sign-in to the GBP), created widget id
+`e52b10e1-f89a-4033-8fff-e53568452e0f`, and gave me the embed snippet.
+Confirmed live: pulls real GBP data, currently 14 reviews / 4.9 average.
+- Embed sits in the `#reviews` section (index.html), wrapped in
+  `.reviews-widget-frame` (white card, yellow top border, shadow) —
+  intentional design, not a placeholder.
+- **Widget renders in an OPEN shadow root** (`.shadow-wrapper` element has
+  `.shadowRoot` accessible) — confirmed via Playwright. This means our site
+  CSS cannot reach the review cards at all (shadow DOM blocks outside styles
+  by design), which is why Jay couldn't find "the CSS" — it doesn't exist in
+  our codebase. True dark-theme restyling of the cards would require either
+  Featurable's own dashboard theme editor, or a JS hack that reaches into the
+  open shadow root at runtime and injects a `<style>` tag — fragile (breaks
+  silently if Featurable changes internal class names), not yet attempted.
+  Current framing approach avoids needing this entirely.
+- **BLOCKED: star-rating filter not yet located in Featurable's dashboard.**
+  Jay can't find it. A 4-star review is currently showing through (wanted
+  4.5★+, which really means "5-star only" or "4★+5★" since individual Google
+  reviews are always whole-number ratings). Next step: get a screenshot of
+  Jay's widget editor screen to point at the exact control — Featurable's
+  dashboard is login-gated so it can't be checked directly.
+- Removed dead code: old `BD_REVIEWS`/`BD_GOOGLE_REVIEWS_URL`/`renderReviews()`
+  manual-paste system and its unused `.review-grid`/`.review-card` CSS.
+- Found in passing: the widget's "Write a review" button links through a
+  Featurable redirect (`featurable.com/go/from-widget?url=...`), not a clean
+  `g.page/r/.../review` shortlink — not ideal for the QR code Jay wanted
+  earlier for the party venue. Still need the real GBP short link for that.
+
 ## Party Quote Builder (2026-07-15)
 Added a self-service popup wizard (triggered by the "Get a Party Quote" button
 in the Pricing section) so clients can build their own quote line-by-line and
