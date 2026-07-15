@@ -363,6 +363,10 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .quote-hint{color:var(--bone-dim);font-size:.85rem;margin-top:6px}
 #qChildren,#qPack{width:100%;background:var(--ink-3);border:1px solid var(--line);color:var(--bone);border-radius:8px;padding:11px 14px;font-family:"Hanken Grotesk",sans-serif;font-size:1rem}
 #qChildren:focus,#qPack:focus{outline:none;border-color:var(--yellow)}
+#qChildren.invalid{border-color:var(--red)}
+.quote-error{color:var(--red);font-size:.85rem;margin-top:6px;display:none}
+.quote-error.show{display:block}
+.quote-panel .btn-wa.is-disabled{opacity:.45;pointer-events:none;box-shadow:none}
 .quote-summary{border-top:1px dashed var(--line);padding-top:16px;margin-bottom:10px}
 .quote-summary-row{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;color:var(--bone-dim);padding:4px 0}
 .quote-summary-row b{color:var(--bone);font-weight:600}
@@ -1069,7 +1073,8 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 
     <div class="quote-field">
       <label for="qChildren">Number of children <small>(max 15 pax)</small></label>
-      <input type="number" id="qChildren" min="1" max="15" value="10" inputmode="numeric">
+      <input type="text" id="qChildren" value="10" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off">
+      <p class="quote-error" id="qChildrenError">Enter a number between 1 and 15.</p>
       <p class="quote-hint" id="qChildrenHint"></p>
     </div>
 
@@ -1140,6 +1145,7 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
   const closeBtn = document.getElementById('quoteCloseBtn');
   const childrenInput = document.getElementById('qChildren');
   const childrenHint = document.getElementById('qChildrenHint');
+  const childrenError = document.getElementById('qChildrenError');
   const decorBox = document.getElementById('qDecor');
   const foodBox = document.getElementById('qFood');
   const packSelect = document.getElementById('qPack');
@@ -1147,6 +1153,36 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
   const totalEl = document.getElementById('quoteTotal');
   const waBtn = document.getElementById('quoteWaBtn');
   const rand = n => 'R' + n.toLocaleString('en-ZA');
+  let lastValidChildren = 10;
+
+  // strip anything but digits as the user types, keeping the cursor in place
+  childrenInput.addEventListener('input', () => {
+    const pos = childrenInput.selectionStart;
+    const cleaned = childrenInput.value.replace(/[^0-9]/g, '');
+    if (cleaned !== childrenInput.value) {
+      const removed = childrenInput.value.length - cleaned.length;
+      childrenInput.value = cleaned;
+      childrenInput.setSelectionRange(pos - removed, pos - removed);
+    }
+    calc();
+  });
+
+  function validateChildren(){
+    const raw = childrenInput.value.trim();
+    let n = null, msg = '';
+    if (raw === '') msg = 'Enter the number of children.';
+    else {
+      n = parseInt(raw, 10);
+      if (!Number.isFinite(n) || n < 1 || n > 15) { msg = 'Enter a number between 1 and 15.'; n = null; }
+    }
+    const invalid = n === null;
+    childrenInput.classList.toggle('invalid', invalid);
+    childrenError.textContent = msg;
+    childrenError.classList.toggle('show', invalid);
+    waBtn.classList.toggle('is-disabled', invalid);
+    if (!invalid) lastValidChildren = n;
+    return n;
+  }
 
   const openModal = () => { modal.classList.add('open'); calc(); };
   const closeModal = () => modal.classList.remove('open');
@@ -1156,8 +1192,8 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
   addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 
   function calc(){
-    let children = Math.max(1, Math.min(15, parseInt(childrenInput.value, 10) || 1));
-    childrenInput.value = children;
+    const validated = validateChildren();
+    const children = validated !== null ? validated : lastValidChildren;
     const venue = document.querySelector('input[name="qVenue"]:checked').value;
     const hours = venue === 'b' ? 2 : 1;
     const venueBase = venue === 'b' ? 2000 : 1200;
@@ -1195,7 +1231,7 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
     waBtn.href = 'https://wa.me/27732571112?text=' + encodeURIComponent(lines.join('\n'));
   }
 
-  [childrenInput, decorBox, foodBox, packSelect].forEach(el => el.addEventListener('input', calc));
+  [decorBox, foodBox, packSelect].forEach(el => el.addEventListener('input', calc));
   document.querySelectorAll('input[name="qVenue"]').forEach(el => el.addEventListener('change', calc));
 })();
 
