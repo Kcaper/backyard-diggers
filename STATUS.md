@@ -1,5 +1,20 @@
 # Status — backyard-diggers
-_Updated: 2026-06-28_
+_Updated: 2026-07-15_
+
+## Party Quote Builder (2026-07-15)
+Added a self-service popup wizard (triggered by the "Get a Party Quote" button
+in the Pricing section) so clients can build their own quote line-by-line and
+see a live total, no back-and-forth needed:
+- Venue: Option A (R1,200/1hr, 1–10 kids) or Option B (R2,000/2hrs, 1–10 kids),
+  max 15 pax — last-minute additions above 10 auto-calc at R120/child/hour.
+- Add-ons: Party Decor (R900 flat), food platter (price-on-request, shown but
+  not added to the numeric total), party pack (R50/child) or deluxe (R100/child).
+- Ends in a prefilled WhatsApp message summarizing the build + total, sent to
+  073 257 1112 — matches the site's existing WhatsApp-first booking pattern.
+Tested (Playwright): math correct across combos, mobile layout holds up,
+backdrop/X/Escape all close it, no console errors.
+If BYDW pricing ever changes, the numbers live inline in the modal HTML/JS
+near `id="quoteModal"` in index.html — no separate config file.
 
 ## Loop 8 SEO (2026-07-15) — keyword-intent content expansion
 Jay sent a ~250-term keyword wishlist (family day out, birthday party, RC/digger
