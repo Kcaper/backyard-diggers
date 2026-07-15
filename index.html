@@ -493,20 +493,14 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 
 /* reviews */
 .reviews{background:var(--ink-2)}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.review-card{background:var(--ink-3);border:1px solid var(--line);border-radius:12px;padding:26px 24px}
-.review-card .stars{color:var(--yellow);letter-spacing:2px;font-size:1.05rem;margin-bottom:10px}
-.review-card p{color:#ddd4c2;font-size:.98rem;line-height:1.55;margin-bottom:14px}
-.review-card .who{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.86rem;color:var(--bone)}
-.reviews-cta{text-align:center;margin-top:34px}
+.reviews-widget-frame{background:#fff;border-radius:16px;padding:28px;border-top:6px solid var(--yellow);box-shadow:0 24px 60px rgba(0,0,0,.4);max-width:1100px;margin:0 auto}
 
 @media(max-width:980px){
   .steps{grid-template-columns:1fr 1fr}
   .book-grid{grid-template-columns:1fr}
-  .review-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:760px){
-  .steps,.review-grid,.form-row{grid-template-columns:1fr}
+  .steps,.form-row{grid-template-columns:1fr}
   .wa-float{width:54px;height:54px}
 }
 </style>
@@ -865,22 +859,18 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
   </div>
 </section>
 
-<!-- REVIEWS (auto-shows once 3+ real Google reviews are added below in the script) -->
-<section class="sec reviews" id="reviews" style="display:none">
+<!-- REVIEWS (live via Featurable Google Reviews widget) -->
+<section class="sec reviews" id="reviews">
   <div class="wrap">
     <div class="sec-head reveal" style="margin-left:auto;margin-right:auto;text-align:center">
       <div class="eyebrow">Happy diggers</div>
       <h2>What families <span class="y">say</span></h2>
       <p style="margin:0 auto">Real reviews from real visits to the dig site.</p>
     </div>
-    <div class="review-grid" id="reviewGrid"></div>
-    <div class="reviews-cta">
-      <button class="btn btn-ghost" id="reviewMoreBtn" style="display:none">Show more reviews</button>
-      <a class="btn btn-primary" id="reviewGoogleBtn" href="#" target="_blank" rel="noopener" style="display:none">
-        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 11v2.8h4a4 4 0 1 1-1.2-3.1l2-2A7 7 0 1 0 19 12c0-.3 0-.7-.1-1z"/></svg>
-        Read all our Google reviews
-      </a>
+    <div class="reviews-widget-frame">
+      <div id="featurable-e52b10e1-f89a-4033-8fff-e53568452e0f" data-featurable-async></div>
     </div>
+    <script src="https://cdn.featurable.com/widget/v2/embed.js" defer charset="UTF-8"></script>
   </div>
 </section>
 
@@ -1283,42 +1273,6 @@ if(bookingForm){
   });
 }
 
-// ----- reviews -----
-// HOW THIS WORKS: the Reviews section stays hidden until there are at least 3
-// real reviews in BD_REVIEWS below. Paste genuine Google reviews here (and your
-// Google reviews link in BD_GOOGLE_REVIEWS_URL) — the section then appears
-// automatically, shows the first 3, and reveals up to 10 via "Show more".
-const BD_GOOGLE_REVIEWS_URL = ""; // ← paste your Google reviews link here
-const BD_REVIEWS = [
-  // { name: "Jane M.", rating: 5, text: "Our boys had an absolute blast!" },
-];
-(function renderReviews(){
-  if(!Array.isArray(BD_REVIEWS) || BD_REVIEWS.length < 3) return;
-  const sec = document.getElementById('reviews');
-  const grid = document.getElementById('reviewGrid');
-  const moreBtn = document.getElementById('reviewMoreBtn');
-  const googleBtn = document.getElementById('reviewGoogleBtn');
-  const list = BD_REVIEWS.slice(0, 10);
-  grid.innerHTML = list.map((r,i)=>{
-    const n = Math.max(1, Math.min(5, r.rating || 5));
-    const stars = '★'.repeat(n) + '☆'.repeat(5 - n);
-    const hide = i >= 3 ? ' style="display:none"' : '';
-    const cls = i >= 3 ? 'review-card extra' : 'review-card';
-    return '<div class="'+cls+'"'+hide+'><div class="stars" aria-label="'+n+' out of 5">'+stars+'</div><p>'+(r.text||'')+'</p><div class="who">— '+(r.name||'Happy parent')+'</div></div>';
-  }).join('');
-  if(list.length > 3){
-    moreBtn.style.display = '';
-    moreBtn.addEventListener('click', ()=>{
-      grid.querySelectorAll('.extra').forEach(el=>el.style.display='');
-      moreBtn.style.display = 'none';
-    });
-  }
-  if(BD_GOOGLE_REVIEWS_URL){
-    googleBtn.href = BD_GOOGLE_REVIEWS_URL;
-    googleBtn.style.display = '';
-  }
-  sec.style.display = '';
-})();
 </script>
 </body>
 </html>
