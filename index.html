@@ -36,17 +36,26 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
 <link rel="apple-touch-icon" href="assets/img/favicon-180.png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Loaded non-blocking (preload + swap-on-load) so the font CSS round-trip doesn't
-     delay first paint; noscript fallback covers JS-disabled visitors.
-     display=optional (not swap): if the font isn't ready almost immediately, the
-     browser keeps the fallback for this page view instead of swapping fonts in
-     mid-read — that swap was the site's biggest layout-shift (CLS) offender,
-     worse on slow connections. Repeat visits use the (by-then cached) real font. -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=optional">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=optional" rel="stylesheet"></noscript>
+<!-- Self-hosted fonts (Latin subset only, downloaded from Google Fonts once — see
+     assets/fonts/). Earlier this loaded from fonts.googleapis.com with
+     display=optional, which fixed a layout-shift (CLS) problem but had a worse
+     side effect on mobile: the extra DNS/TLS round trip to Google's CDN plus
+     optional's tight ~100ms budget meant the brand fonts frequently never made it
+     in time on mobile connections, silently falling back to system fonts for the
+     whole page view — mobile and desktop visibly looked like different sites.
+     Self-hosting removes the external round trip entirely, so display=swap is
+     now safe (same-origin + cached = minimal visible swap, no more CLS problem)
+     AND reliable (the font always loads, mobile matches desktop). -->
+<style>
+@font-face{font-family:"Anton";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/anton-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 800;font-display:swap;src:url("assets/fonts/hanken-grotesk-var.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Saira Condensed";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/saira-condensed-400.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Saira Condensed";font-style:normal;font-weight:500;font-display:swap;src:url("assets/fonts/saira-condensed-500.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Saira Condensed";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/saira-condensed-600.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Saira Condensed";font-style:normal;font-weight:700;font-display:swap;src:url("assets/fonts/saira-condensed-700.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+</style>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/anton-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/hanken-grotesk-var.woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" />
 
 <script type="application/ld+json">
