@@ -1,6 +1,70 @@
 # Status — backyard-diggers
 _Updated: 2026-07-15_
 
+## SEO/performance audit + fixes (2026-07-15)
+Ran a real Lighthouse audit (not just manual read-through) against the live
+site, verified every finding by hand, then fixed what was fixable. Starting
+scores: Performance 44, Accessibility 97, Best Practices 100, SEO 92.
+
+**Shipped fixes** (commits `590392f`, `d68230d`):
+- Logo: 811x834 PNG @ 260KB → 200x206 WebP @ 18KB (was displayed at 85x88px).
+  `logo.png` itself kept in place, unchanged — still referenced live in the
+  emailed Gmail signature (`email-signature.html`), do not delete it.
+- About-section photo: added a 700w responsive `srcset` variant for mobile.
+- Google Fonts: non-blocking load (preload+swap-on-load pattern), and
+  `display=optional` instead of `swap` — **this was an iterative fix**, see
+  below, don't revert to `swap` without understanding why.
+- Fixed 2 heading-order skips (h2→h4 in Visit section, h2→h5 in footer),
+  both bumped to h3 to match the site's existing nesting convention.
+- Added a `<main>` landmark around the primary content.
+- Bumped `sitemap.xml` lastmod to today.
+
+**Caught and fixed before shipping — a real regression, not just Lighthouse
+noise:** adding `width`/`height` attributes to images without also pairing
+the right `width:auto`/`height:auto` in CSS visibly stretched 3 images
+(footer logo, about-photo, one gallery photo). Root cause: a browser only
+auto-derives the missing dimension from HTML width/height attributes when
+the *other* dimension's CSS value is genuinely `auto` — `.foot-brand img`
+had `height:78px` but no `width:auto`, so the browser used the width
+*attribute* (200) literally instead of scaling it, stretching the logo.
+Caught via direct `getBoundingClientRect()` measurement (not just trusting
+Lighthouse), fixed by adding the missing `auto` pairing in 3 CSS rules
+(`.foot-brand img`, `.about-photo img`, `.gal-grid img`).
+
+**The font CLS fix took two tries — worth understanding why:**
+1st attempt (non-blocking font load with `display=swap`) fixed First
+Contentful Paint but made CLS *worse* on live (0.297→0.327) — un-blocking
+render meant text now paints with a fallback font immediately, then visibly
+reflows when the real font swaps in. Locally (near-zero latency) this
+measured as CLS:0, which was misleading — the swap gap is latency-dependent
+and only showed up under real network conditions. Switched to
+`display=optional`: if the font isn't cached within ~100ms, the browser
+keeps the fallback for that whole page view instead of swapping in later.
+Confirmed CLS 0 on the **live** site after this (not just localhost).
+**Lesson for next time: always re-verify perf/CLS fixes against the live
+URL, not just localhost — localhost's near-zero latency can hide exactly
+the failure mode you're trying to fix.**
+
+**Final live-site scores (Lighthouse, this session):** Accessibility 100,
+Best Practices 100, SEO 92 (one point is a false-positive robots.txt check —
+verified independently via direct curl, robots.txt serves fine), Performance
+61 (up from 44). CLS confirmed 0.
+
+**Known limitation, not a site bug:** raw Performance/LCP numbers from this
+session's testing environment are skewed by its own network path to Netlify
+— measured TTFB ~1.1-1.4s and ~60-90KB/s throughput to backyarddiggers.co.za,
+vs 22Mbps to Cloudflare from the same sandbox in the same session. A local
+(near-zero-latency) test of the identical fixed code scored Performance 99,
+LCP 2.0s. Real visitors (mostly South African, normal connections) almost
+certainly see something much closer to that. If performance ever needs
+re-checking, use Google PageSpeed Insights (real field data from actual
+visitors) rather than re-running Lighthouse from an unknown sandbox network
+path — it's a more trustworthy source for the absolute number.
+
+**Not fixed, needs a decision from Jay/Kathy, not a code change:** Google
+Analytics/Tag Manager (`G-ZV3K1EGKNW`) is running on the site. Wasn't set up
+in any Claude session — confirm it's intentional and actually theirs.
+
 ## Google Reviews — live via Featurable's official widget, final (2026-07-15)
 Settled here after trying three approaches same day — worth knowing the
 history so nobody re-litigates it:
