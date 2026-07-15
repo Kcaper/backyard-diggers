@@ -38,7 +38,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Loaded non-blocking (preload + swap-on-load) so the font CSS round-trip doesn't
+     delay first paint; noscript fallback covers JS-disabled visitors. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira+Condensed:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" as="image" href="assets/img/hero.webp" type="image/webp" />
 
 <script type="application/ld+json">
@@ -210,7 +214,7 @@ header.site.scrolled{background:rgba(13,12,9,.94)}
 .stat b{font-family:"Anton",sans-serif;font-size:2rem;color:var(--yellow);display:block;line-height:1}
 .stat span{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;color:var(--bone-dim)}
 .about-photo{position:relative}
-.about-photo img{border-radius:10px;border:1px solid var(--line);box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.about-photo img{border-radius:10px;border:1px solid var(--line);box-shadow:0 30px 60px rgba(0,0,0,.5);width:100%;height:auto}
 .photo-tag{position:absolute;bottom:-16px;left:-16px;background:var(--red);color:#fff;font-family:"Saira Condensed",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;padding:9px 16px;border-radius:4px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
 .photo-frame{position:absolute;top:-14px;right:-14px;bottom:14px;left:14px;border:2px solid var(--yellow);border-radius:10px;z-index:-1;opacity:.5}
 
@@ -280,7 +284,7 @@ header.site.scrolled{background:rgba(13,12,9,.94)}
 .gallery{background:var(--ink-2)}
 .gal-grid{columns:3;column-gap:14px}
 .gal-grid figure{break-inside:avoid;margin:0 0 14px;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;border:1px solid var(--line)}
-.gal-grid img{width:100%;transition:transform .5s,filter .3s;filter:saturate(.96)}
+.gal-grid img{width:100%;height:auto;transition:transform .5s,filter .3s;filter:saturate(.96)}
 .gal-grid figure:hover img{transform:scale(1.07);filter:saturate(1.1)}
 .gal-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;background:linear-gradient(transparent,rgba(13,12,9,.9));font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;opacity:0;transition:opacity .3s}
 .gal-grid figure:hover figcaption{opacity:1}
@@ -292,7 +296,7 @@ header.site.scrolled{background:rgba(13,12,9,.94)}
 .kv .item{background:var(--ink-3);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
 .kv .item .ic{width:32px;height:32px;margin-bottom:8px}
 .kv .item .ic svg{width:24px;height:24px;stroke:var(--yellow);fill:none;stroke-width:1.8}
-.kv .item h4{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;margin-bottom:2px}
+.kv .item h3{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.95rem;margin-bottom:2px}
 .kv .item p{font-size:.92rem;color:var(--bone-dim);line-height:1.45}
 .faq details{border-bottom:1px solid var(--line);padding:4px 0}
 .faq summary{cursor:pointer;list-style:none;padding:16px 0;font-family:"Saira Condensed",sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:1.12rem;display:flex;justify-content:space-between;align-items:center;gap:14px}
@@ -322,9 +326,9 @@ header.site.scrolled{background:rgba(13,12,9,.94)}
 /* FOOTER */
 footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;padding-bottom:44px}
-.foot-brand img{height:78px;margin-bottom:14px}
+.foot-brand img{height:78px;width:auto;margin-bottom:14px}
 .foot-brand p{color:var(--bone-dim);font-size:.95rem;max-width:320px}
-.foot-col h5{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;color:var(--yellow);font-size:.9rem;margin-bottom:16px}
+.foot-col h3{font-family:"Saira Condensed",sans-serif;text-transform:uppercase;letter-spacing:.14em;color:var(--yellow);font-size:.9rem;margin-bottom:16px}
 .foot-col a{display:block;color:var(--bone-dim);padding:6px 0;font-size:.96rem;transition:color .2s}
 .foot-col a:hover{color:var(--yellow)}
 .foot-social{display:flex;gap:12px;margin-top:8px}
@@ -514,7 +518,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 <header class="site" id="top">
   <div class="nav">
     <a class="brand" href="#top" aria-label="Backyard Diggers home">
-      <img src="assets/img/logo.png" alt="Backyard Diggers World logo" />
+      <img src="assets/img/logo-200.webp" alt="Backyard Diggers World logo" width="200" height="206" />
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="#about">About</a>
@@ -534,6 +538,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
   </div>
 </header>
 
+<main>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
@@ -579,7 +584,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     </div>
     <div class="about-photo reveal" style="transition-delay:.1s">
       <div class="photo-frame"></div>
-      <img src="assets/img/diggers-action.webp" alt="Remote-control excavators and dump trucks parked on the sandy dig course at Backyard Diggers" loading="lazy" />
+      <img src="assets/img/diggers-action.webp" srcset="assets/img/diggers-action-700.webp 700w, assets/img/diggers-action.webp 1100w" sizes="(max-width: 980px) 100vw, 523px" alt="Remote-control excavators and dump trucks parked on the sandy dig course at Backyard Diggers" width="1100" height="1337" loading="lazy" />
       <div class="photo-tag">Real machines. Real digging.</div>
     </div>
   </div>
@@ -841,7 +846,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       <p>Honest snaps from the site — diggers, the dig course, the fleet and the full undercover setup.</p>
     </div>
     <div class="gal-grid reveal" id="galGrid">
-      <figure><img src="assets/img/track-wide.webp" alt="Wide view of the multi-level dig course under the striped shade netting" loading="lazy"><figcaption>The multi-level dig course</figcaption></figure>
+      <figure><img src="assets/img/track-wide.webp" alt="Wide view of the multi-level dig course under the striped shade netting" width="1600" height="1200" loading="lazy"><figcaption>The multi-level dig course</figcaption></figure>
       <figure><img src="assets/img/fleet.webp" alt="Shelf of numbered remote-control construction vehicles" loading="lazy"><figcaption>The machine fleet</figcaption></figure>
       <figure><img src="assets/img/hands-on.webp" alt="A remote-control excavator beside its controller on the play table" loading="lazy"><figcaption>Take the controls</figcaption></figure>
       <figure><img src="assets/img/themed-signage.webp" alt="Construction theming with road signs and a digger on a raised platform" loading="lazy"><figcaption>Fully themed site</figcaption></figure>
@@ -883,12 +888,12 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     <div class="visit-grid">
       <div class="reveal">
         <div class="kv">
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h4>Where</h4><p>6 Platboom Avenue, Weltevreden Park, Roodepoort. Easy to find, with parking on site.</p></div>
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div><h4>Secure &amp; supervised</h4><p>Safe, enclosed venue with clean bathrooms and friendly child minders on site.</p></div>
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 7l2 12h12l2-12M4 7l1-3h14l1 3"/></svg></div><h4>All weather</h4><p>The whole play area is undercover and shaded — rain or shine, dig's on.</p></div>
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 9h12v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/><path d="M7 5v1m4-1v1"/></svg></div><h4>Tea, coffee &amp; cold drinks</h4><p>Shaded parent seating with tea, coffee and cool drinks. Sit back while they play.</p></div>
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="9" width="12" height="7" rx="2"/><path d="M9 13h1m4 0h1M10 9V7a2 2 0 0 1 4 0v2"/></svg></div><h4>RC trainers on site</h4><p>Our remote-control helpers show the kids the ropes and stay on hand with the controls all session.</p></div>
-          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div><h4>Cashless</h4><p>Card &amp; tap only (Yoco). No need to carry cash.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><h3>Where</h3><p>6 Platboom Avenue, Weltevreden Park, Roodepoort. Easy to find, with parking on site.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V7z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Secure &amp; supervised</h3><p>Safe, enclosed venue with clean bathrooms and friendly child minders on site.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 7l2 12h12l2-12M4 7l1-3h14l1 3"/></svg></div><h3>All weather</h3><p>The whole play area is undercover and shaded — rain or shine, dig's on.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 9h12v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M16 10h2a2 2 0 0 1 0 4h-2"/><path d="M7 5v1m4-1v1"/></svg></div><h3>Tea, coffee &amp; cold drinks</h3><p>Shaded parent seating with tea, coffee and cool drinks. Sit back while they play.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="9" width="12" height="7" rx="2"/><path d="M9 13h1m4 0h1M10 9V7a2 2 0 0 1 4 0v2"/></svg></div><h3>RC trainers on site</h3><p>Our remote-control helpers show the kids the ropes and stay on hand with the controls all session.</p></div>
+          <div class="item"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div><h3>Cashless</h3><p>Card &amp; tap only (Yoco). No need to carry cash.</p></div>
         </div>
       </div>
       <div class="faq reveal" style="transition-delay:.08s">
@@ -998,6 +1003,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     </div>
   </div>
 </section>
+</main>
 
 <div class="hazard-bar"></div>
 
@@ -1005,7 +1011,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 <footer>
   <div class="wrap foot-grid">
     <div class="foot-brand">
-      <img src="assets/img/logo.png" alt="Backyard Diggers World" />
+      <img src="assets/img/logo-200.webp" alt="Backyard Diggers World" width="200" height="206" />
       <p>A hands-on, construction-themed play &amp; party venue in Weltevreden Park, Johannesburg. Where kids dig, scoop, race and play — and parents finally get to sit down.</p>
       <div class="foot-social">
         <a href="https://www.facebook.com/profile.php?id=61589118839099" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
@@ -1013,7 +1019,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       </div>
     </div>
     <div class="foot-col">
-      <h5>Explore</h5>
+      <h3>Explore</h3>
       <a href="#about">About</a>
       <a href="#activities">Activities</a>
       <a href="#parties">Birthday Parties</a>
@@ -1022,7 +1028,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
       <a href="#gallery">Gallery</a>
     </div>
     <div class="foot-col">
-      <h5>Visit &amp; book</h5>
+      <h3>Visit &amp; book</h3>
       <a href="#visit">Good to Know</a>
       <a href="#book">Book Online</a>
       <a href="https://wa.me/27732571112" target="_blank" rel="noopener">WhatsApp 073 257 1112</a>
