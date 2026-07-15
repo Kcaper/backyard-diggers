@@ -742,7 +742,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
         <div><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Dads drive for free</div>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn btn-primary" href="#book">Book a Party</a>
+        <button type="button" class="btn btn-primary js-quote-open">Book a Party</button>
         <a class="btn btn-wa" href="https://wa.me/27732571112?text=Hi%20Backyard%20Diggers%2C%20I%27d%20like%20to%20book%20a%20birthday%20party." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M17 15.5c-1-.1-2-.4-2.9-.8a1 1 0 0 0-1 .2l-1.3 1.3a12 12 0 0 1-5.2-5.2l1.3-1.3a1 1 0 0 0 .2-1 9 9 0 0 1-.8-2.9 1 1 0 0 0-1-.8H4a1 1 0 0 0-1 1A14 14 0 0 0 17 20a1 1 0 0 0 1-1v-2.5a1 1 0 0 0-.9-1z"/></svg>
           WhatsApp Us
@@ -787,7 +787,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Bring your own snacks &amp; drinks</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5 1.4-1.4L9 14.2 18.6 4.6z"/></svg>Dads drive for free — moms too</li>
         </ul>
-        <button type="button" class="btn btn-ghost" id="quoteOpenBtn" style="width:100%;justify-content:center">Get a Party Quote</button>
+        <button type="button" class="btn btn-ghost js-quote-open" style="width:100%;justify-content:center">Get a Party Quote</button>
       </div>
     </div>
     <p class="price-note reveal">Sessions run by booking so it never gets chaotic and every kid gets machine time. <b>Book online below</b> or message us on WhatsApp for available times. <b>Cashless premises</b> — card &amp; tap accepted.<br><span style="color:var(--bone-dim)">Parents play along free when they're here with their kids. Adult-only outings — team building &amp; corporate events — are priced per group; just ask for a quote.</span></p>
@@ -1136,7 +1136,7 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
 // ----- party quote wizard -----
 (function(){
   const modal = document.getElementById('quoteModal');
-  const openBtn = document.getElementById('quoteOpenBtn');
+  const openBtns = document.querySelectorAll('.js-quote-open');
   const closeBtn = document.getElementById('quoteCloseBtn');
   const childrenInput = document.getElementById('qChildren');
   const childrenHint = document.getElementById('qChildrenHint');
@@ -1150,7 +1150,7 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
 
   const openModal = () => { modal.classList.add('open'); calc(); };
   const closeModal = () => modal.classList.remove('open');
-  openBtn.addEventListener('click', openModal);
+  openBtns.forEach(btn => btn.addEventListener('click', openModal));
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
   addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
