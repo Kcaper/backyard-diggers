@@ -1,6 +1,23 @@
 # Status — backyard-diggers
 _Updated: 2026-06-28_
 
+## Loop 8 SEO (2026-07-15) — keyword-intent content expansion
+Jay sent a ~250-term keyword wishlist (family day out, birthday party, RC/digger
+theme, audience segments like grandkids/homeschool/crèche, local intent for
+Roodepoort/Randburg/Gauteng). Explained meta-keywords stuffing is dead/useless —
+instead wove real intent into visible content:
+- Added FAQ: "Who is Backyard Diggers good for?" (siblings/cousins/grandparents/
+  mommy-daddy-and-me/homeschool/crèche — all true, no invented claims).
+- Added FAQ: "Do you only cater to Weltevreden Park?" (Roodepoort/Randburg/Joburg draw).
+- Expanded "What if it rains?" + schools/events FAQ answers with school-holiday/
+  homeschool/crèche language.
+- Added FAQPage JSON-LD (didn't exist before) mirroring all 10 visible FAQ Q&As —
+  eligible for rich results / AI overviews on these exact question phrases.
+- Schema areaServed: added Randburg, Gauteng (was Joburg/Roodepoort/Weltevreden Park only).
+Deliberately did NOT touch title/meta description (already trimmed in Loop 3/4) or
+add unsubstantiated superlative claims ("best", "top-rated", "award-winning") —
+those should be earned via real reviews, ties to the pending reviews-widget work.
+
 ## SEO pass (2026-06-28) — all 7 loops closed
 1. Images -> WebP: 7.2MB -> 2.7MB (~62% lighter). og-image + video-poster stay JPG.
 2. _headers: static assets cache 1yr; HTML must-revalidate.
