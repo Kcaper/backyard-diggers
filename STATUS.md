@@ -1,35 +1,41 @@
 # Status — backyard-diggers
 _Updated: 2026-07-15_
 
-## Google Reviews — live via Featurable widget (2026-07-15)
-Reviews section is no longer manual-paste. Jay signed up at featurable.com
-(free plan, connected via Google sign-in to the GBP), created widget id
-`e52b10e1-f89a-4033-8fff-e53568452e0f`, and gave me the embed snippet.
-Confirmed live: pulls real GBP data, currently 14 reviews / 4.9 average.
-- Embed sits in the `#reviews` section (index.html), wrapped in
-  `.reviews-widget-frame` (white card, yellow top border, shadow) —
-  intentional design, not a placeholder.
-- **Widget renders in an OPEN shadow root** (`.shadow-wrapper` element has
-  `.shadowRoot` accessible) — confirmed via Playwright. This means our site
-  CSS cannot reach the review cards at all (shadow DOM blocks outside styles
-  by design), which is why Jay couldn't find "the CSS" — it doesn't exist in
-  our codebase. True dark-theme restyling of the cards would require either
-  Featurable's own dashboard theme editor, or a JS hack that reaches into the
-  open shadow root at runtime and injects a `<style>` tag — fragile (breaks
-  silently if Featurable changes internal class names), not yet attempted.
-  Current framing approach avoids needing this entirely.
-- **BLOCKED: star-rating filter not yet located in Featurable's dashboard.**
-  Jay can't find it. A 4-star review is currently showing through (wanted
-  4.5★+, which really means "5-star only" or "4★+5★" since individual Google
-  reviews are always whole-number ratings). Next step: get a screenshot of
-  Jay's widget editor screen to point at the exact control — Featurable's
-  dashboard is login-gated so it can't be checked directly.
-- Removed dead code: old `BD_REVIEWS`/`BD_GOOGLE_REVIEWS_URL`/`renderReviews()`
-  manual-paste system and its unused `.review-grid`/`.review-card` CSS.
-- Found in passing: the widget's "Write a review" button links through a
-  Featurable redirect (`featurable.com/go/from-widget?url=...`), not a clean
-  `g.page/r/.../review` shortlink — not ideal for the QR code Jay wanted
-  earlier for the party venue. Still need the real GBP short link for that.
+## Google Reviews — live, self-rendered from Featurable's data API (2026-07-15)
+Reviews section is no longer manual-paste and no longer embeds Featurable's
+official widget either — we render it ourselves now. History: Jay signed up
+at featurable.com (free plan, Google sign-in to the GBP), created widget id
+`e52b10e1-f89a-4033-8fff-e53568452e0f`. First attempt embedded their widget
+directly, but hit two dead ends:
+1. Widget renders inside an **open shadow root** — confirmed via Playwright —
+   so our site CSS structurally cannot restyle the review cards (shadow DOM
+   blocks outside styles by design). That's why Jay couldn't find "the CSS":
+   it doesn't exist in our codebase, full stop.
+2. Featurable's dashboard has **no minimum-rating filter** — confirmed by
+   inspecting the widget's own config via its public API (other unset fields
+   still appear as `null`, but there's no rating-filter key at all, on any
+   plan tier we could find). Jay wasn't missing a button; it isn't there.
+
+**Fix:** `https://api.featurable.com/v2/widgets/<uuid>` is a public,
+unauthenticated GET — the same JSON their embed.js fetches to render, just
+consumed directly by us instead. `loadReviews()` (end of index.html) fetches
+it client-side on page load, filters to `rating >= 4`, sorts best+newest
+first, caps at 10, and renders into `.review-grid`/`.review-card` (restored
+— same dark-theme classes the original manual system used). Reviewer
+surnames are shortened to an initial ourselves ("Marco Mariska" -> "Marco M.")
+since Featurable's widget did that automatically and our direct fetch bypasses
+it — this was privacy-sensitive, don't skip it if this code is ever touched.
+The "Read all our Google reviews" button uses the real Google Maps
+write-a-review link from `gbpLocationSummary.writeAReviewUri` in the API
+response (found via that same endpoint) — better than Featurable's own
+redirect-wrapped version, and possibly reusable for the QR-code-on-venue idea
+Jay mentioned earlier, still not done.
+
+**Risk, noted deliberately:** this endpoint isn't officially documented for
+third-party use — it could change shape or get locked down without notice.
+If reviews silently stop appearing, check this first before assuming a code
+regression. `loadReviews()` fails closed (section stays hidden, console.error
+only) rather than breaking the page.
 
 ## Party Quote Builder (2026-07-15)
 Added a self-service popup wizard (triggered by the "Get a Party Quote" button
