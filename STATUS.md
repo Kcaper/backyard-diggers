@@ -45,11 +45,19 @@ page's own dark background shows through the gaps.
 
 **If reviews-widget work resumes:** `https://api.featurable.com/v2/widgets/<uuid>`
 is a public, unauthenticated GET returning the same JSON the embed fetches —
-useful for diagnostics (e.g. checking `gbpLocationSummary.writeAReviewUri`
-for a real Google Maps write-review link, better than Featurable's own
-redirect-wrapped one — possibly reusable for the QR-code-on-venue idea Jay
-mentioned earlier, still not done) — but don't reach for it as a widget
-replacement again without asking first; that door's been tried and closed.
+useful for diagnostics — but don't reach for it as a widget replacement again
+without asking first; that door's been tried and closed.
+
+**Brand-match custom CSS: DONE (2026-07-15).** Jay pasted the CSS block into
+Featurable's dashboard custom_css field — reviews widget now fully matches
+site colors/font, not just the color_scheme:dark toggle from earlier.
+
+**QR code for on-venue reviews: DONE (2026-07-15).** Jay already had one —
+official Google-generated code (`g.page/r/CRL4gT7VS1yuEBM/review`, tagged
+`utm_source=gbp`), not something I generated. Saved to
+`../marketing/qr-google-review.png` (sibling folder, not in this git repo)
+and wired into `../marketing/01-review-request-whatsapp.md`'s `[REVIEW LINK]`
+placeholders. Marketing folder isn't version-controlled — plain files on disk.
 
 ## Party Quote Builder (2026-07-15)
 Added a self-service popup wizard (triggered by the "Get a Party Quote" button
