@@ -379,9 +379,10 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 .quote-check label{display:flex;align-items:center;gap:10px;font-family:"Hanken Grotesk",sans-serif;font-weight:600;text-transform:none;letter-spacing:0;font-size:1rem;cursor:pointer}
 .quote-check input{accent-color:var(--yellow);width:17px;height:17px}
 .quote-hint{color:var(--bone-dim);font-size:.85rem;margin-top:6px}
-#qChildren,#qPack{width:100%;background:var(--ink-3);border:1px solid var(--line);color:var(--bone);border-radius:8px;padding:11px 14px;font-family:"Hanken Grotesk",sans-serif;font-size:1rem}
-#qChildren:focus,#qPack:focus{outline:none;border-color:var(--yellow)}
-#qChildren.invalid{border-color:var(--red)}
+#qChildren,#qAdults,#qPack,#qName,#qDate{width:100%;background:var(--ink-3);border:1px solid var(--line);color:var(--bone);border-radius:8px;padding:11px 14px;font-family:"Hanken Grotesk",sans-serif;font-size:1rem}
+#qChildren:focus,#qAdults:focus,#qPack:focus,#qName:focus,#qDate:focus{outline:none;border-color:var(--yellow)}
+#qChildren.invalid,#qAdults.invalid{border-color:var(--red)}
+#qDate{color-scheme:dark}
 .quote-error{color:var(--red);font-size:.85rem;margin-top:6px;display:none}
 .quote-error.show{display:block}
 .quote-panel .btn-wa.is-disabled{opacity:.45;pointer-events:none;box-shadow:none}
@@ -1076,6 +1077,16 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     <p class="quote-sub">Pick your options — your total updates as you go. Message us the summary when you're ready.</p>
 
     <div class="quote-field">
+      <label for="qName">Family / contact name <small>(optional)</small></label>
+      <input type="text" id="qName" placeholder="e.g. The Smith Family" autocomplete="name">
+    </div>
+
+    <div class="quote-field">
+      <label for="qDate">Preferred party date <small>(optional)</small></label>
+      <input type="date" id="qDate">
+    </div>
+
+    <div class="quote-field">
       <label>Venue package</label>
       <div class="quote-radio-group">
         <label class="quote-radio"><input type="radio" name="qVenue" value="a" checked><span><b>Option A</b> — R1,200 for 1 hour<br><small>1–10 children, exclusive use of the venue</small></span></label>
@@ -1084,10 +1095,16 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
     </div>
 
     <div class="quote-field">
-      <label for="qChildren">Number of children <small>(max 15 pax)</small></label>
+      <label for="qChildren">Number of children <small>(max 15 pax total, incl. adults)</small></label>
       <input type="text" id="qChildren" value="10" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off">
       <p class="quote-error" id="qChildrenError">Enter a number between 1 and 15.</p>
       <p class="quote-hint" id="qChildrenHint"></p>
+    </div>
+
+    <div class="quote-field">
+      <label for="qAdults">Number of adults attending <small>(optional — counts toward the 15 pax cap)</small></label>
+      <input type="text" id="qAdults" value="0" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off">
+      <p class="quote-error" id="qCapacityError">The venue takes 15 people max, kids + adults together — please reduce one of the numbers.</p>
     </div>
 
     <div class="quote-field quote-check">
@@ -1097,6 +1114,10 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 
     <div class="quote-field quote-check">
       <label><input type="checkbox" id="qFood"> Add a food platter <small>(price on request)</small></label>
+    </div>
+
+    <div class="quote-field quote-check">
+      <label><input type="checkbox" id="qCake"> Add a cake <small>(price on request)</small></label>
     </div>
 
     <div class="quote-field">
@@ -1110,7 +1131,7 @@ footer{background:var(--char);padding:56px 0 0;border-top:1px solid var(--line)}
 
     <div class="quote-summary" id="quoteSummary"></div>
     <div class="quote-total"><span>Estimated total</span><span id="quoteTotal">R0</span></div>
-    <p class="quote-hint">This is an estimate — your quote is confirmed when you book. Food platter priced separately on request.</p>
+    <p class="quote-hint">This is an estimate — your quote is confirmed when you book. Food platter &amp; cake priced separately on request.</p>
 
     <a class="btn btn-wa" id="quoteWaBtn" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M17 15.5c-1-.1-2-.4-2.9-.8a1 1 0 0 0-1 .2l-1.3 1.3a12 12 0 0 1-5.2-5.2l1.3-1.3a1 1 0 0 0 .2-1 9 9 0 0 1-.8-2.9 1 1 0 0 0-1-.8H4a1 1 0 0 0-1 1A14 14 0 0 0 17 20a1 1 0 0 0 1-1v-2.5a1 1 0 0 0-.9-1z"/></svg>
@@ -1155,11 +1176,16 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
   const modal = document.getElementById('quoteModal');
   const openBtns = document.querySelectorAll('.js-quote-open');
   const closeBtn = document.getElementById('quoteCloseBtn');
+  const nameInput = document.getElementById('qName');
+  const dateInput = document.getElementById('qDate');
   const childrenInput = document.getElementById('qChildren');
   const childrenHint = document.getElementById('qChildrenHint');
   const childrenError = document.getElementById('qChildrenError');
+  const adultsInput = document.getElementById('qAdults');
+  const capacityError = document.getElementById('qCapacityError');
   const decorBox = document.getElementById('qDecor');
   const foodBox = document.getElementById('qFood');
+  const cakeBox = document.getElementById('qCake');
   const packSelect = document.getElementById('qPack');
   const summaryEl = document.getElementById('quoteSummary');
   const totalEl = document.getElementById('quoteTotal');
@@ -1167,17 +1193,25 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
   const rand = n => 'R' + n.toLocaleString('en-ZA');
   let lastValidChildren = 10;
 
+  if (typeof dateInput.showPicker === 'function') {
+    dateInput.addEventListener('click', () => { try { dateInput.showPicker(); } catch (e) {} });
+  }
+
   // strip anything but digits as the user types, keeping the cursor in place
-  childrenInput.addEventListener('input', () => {
-    const pos = childrenInput.selectionStart;
-    const cleaned = childrenInput.value.replace(/[^0-9]/g, '');
-    if (cleaned !== childrenInput.value) {
-      const removed = childrenInput.value.length - cleaned.length;
-      childrenInput.value = cleaned;
-      childrenInput.setSelectionRange(pos - removed, pos - removed);
-    }
-    calc();
-  });
+  function digitsOnly(input, onChange){
+    input.addEventListener('input', () => {
+      const pos = input.selectionStart;
+      const cleaned = input.value.replace(/[^0-9]/g, '');
+      if (cleaned !== input.value) {
+        const removed = input.value.length - cleaned.length;
+        input.value = cleaned;
+        input.setSelectionRange(pos - removed, pos - removed);
+      }
+      onChange();
+    });
+  }
+  digitsOnly(childrenInput, calc);
+  digitsOnly(adultsInput, calc);
 
   function validateChildren(){
     const raw = childrenInput.value.trim();
@@ -1206,10 +1240,15 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
   function calc(){
     const validated = validateChildren();
     const children = validated !== null ? validated : lastValidChildren;
+    const adults = Math.max(0, Math.min(15, parseInt(adultsInput.value, 10) || 0));
     const venue = document.querySelector('input[name="qVenue"]:checked').value;
     const hours = venue === 'b' ? 2 : 1;
     const venueBase = venue === 'b' ? 2000 : 1200;
     const venueLabel = venue === 'b' ? 'Option B — R2,000 for 2 hours' : 'Option A — R1,200 for 1 hour';
+
+    const overCapacity = (children + adults) > 15;
+    capacityError.classList.toggle('show', overCapacity);
+    waBtn.classList.toggle('is-disabled', overCapacity || childrenInput.classList.contains('invalid'));
 
     const extraChildren = Math.max(0, children - 10);
     childrenHint.textContent = extraChildren > 0
@@ -1222,28 +1261,34 @@ addEventListener('keydown', e=>{ if(e.key==='Escape') closeLb(); });
     const packCost = packRate * children;
 
     const total = venueBase + extraCost + decorCost + packCost;
+    const hasRequestItems = foodBox.checked || cakeBox.checked;
 
     const rows = [`<div class="quote-summary-row"><span>${venueLabel}</span><b>${rand(venueBase)}</b></div>`];
+    if (adults > 0) rows.push(`<div class="quote-summary-row"><span>Adults attending</span><b>${adults} (free)</b></div>`);
     if (extraCost > 0) rows.push(`<div class="quote-summary-row"><span>Last-minute additions (${extraChildren} × R120 × ${hours}h)</span><b>${rand(extraCost)}</b></div>`);
     if (decorCost > 0) rows.push(`<div class="quote-summary-row"><span>Party Decor</span><b>${rand(decorCost)}</b></div>`);
     if (packCost > 0) rows.push(`<div class="quote-summary-row"><span>${packSelect.selectedOptions[0].text} × ${children}</span><b>${rand(packCost)}</b></div>`);
     if (foodBox.checked) rows.push(`<div class="quote-summary-row"><span>Food platter</span><b>Price on request</b></div>`);
+    if (cakeBox.checked) rows.push(`<div class="quote-summary-row"><span>Cake</span><b>Price on request</b></div>`);
     summaryEl.innerHTML = rows.join('');
-    totalEl.textContent = rand(total) + (foodBox.checked ? ' +' : '');
+    totalEl.textContent = rand(total) + (hasRequestItems ? ' +' : '');
 
     const lines = [
       `Hi Backyard Diggers, I'd like a party quote:`,
-      `- ${venueLabel} (${children} children)`,
     ];
+    if (nameInput.value.trim()) lines.push(`- Family/contact: ${nameInput.value.trim()}`);
+    if (dateInput.value) lines.push(`- Preferred date: ${dateInput.value}`);
+    lines.push(`- ${venueLabel} (${children} children${adults > 0 ? ` + ${adults} adults` : ''})`);
     if (extraChildren > 0) lines.push(`- ${extraChildren} last-minute addition(s) at R120/child/hour`);
     if (decorCost > 0) lines.push(`- Party Decor (R900)`);
     if (packCost > 0) lines.push(`- ${packSelect.selectedOptions[0].text} x ${children}`);
     if (foodBox.checked) lines.push(`- Food platter (please quote)`);
-    lines.push(`Estimated total: ${rand(total)}${foodBox.checked ? ' + food platter' : ''}`);
+    if (cakeBox.checked) lines.push(`- Cake (please quote)`);
+    lines.push(`Estimated total: ${rand(total)}${hasRequestItems ? ' + items marked "please quote"' : ''}`);
     waBtn.href = 'https://wa.me/27732571112?text=' + encodeURIComponent(lines.join('\n'));
   }
 
-  [decorBox, foodBox, packSelect].forEach(el => el.addEventListener('input', calc));
+  [decorBox, foodBox, cakeBox, packSelect, nameInput, dateInput].forEach(el => el.addEventListener('input', calc));
   document.querySelectorAll('input[name="qVenue"]').forEach(el => el.addEventListener('change', calc));
 })();
 
