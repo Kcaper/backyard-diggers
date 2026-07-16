@@ -1,5 +1,5 @@
 # Status — backyard-diggers
-_Updated: 2026-07-15_
+_Updated: 2026-07-16_
 
 ## Follow-up (2026-07-15 evening, commit `8e3b0d6`)
 Jay asked for the venue-package wording to stop saying "1-10 children"
@@ -240,9 +240,11 @@ Re-index requested in Search Console 2026-06-28 (after title/desc/image/schema c
 - Video section: added 3 more clips (576x1024) with a thumbnail switcher.
 - Booking flow: WhatsApp panel now ABOVE the form; form is secondary.
 
-## Now
-Big review-pass shipped + Google presence being set up. Working through
-Google Business Profile (last big piece).
+## Now/Next/Blocked below (2026-06-28) — HISTORICAL, fully resolved
+GBP is verified, live, and has real reviews (see the Google Reviews section
+above, dated 2026-07-15). Keeping this section for the record, but don't act
+on it — everything in it is done. Current state is always the newest-dated
+section at the top of this file.
 
 ## Done today
 - Site update: founder story, "what happens when you arrive", on-site booking
@@ -298,5 +300,8 @@ building and treasure hunts. Only the kids pay. Come dig in!
 - Contact: Kathy Tomlinson
 - Hard hats & hi-vis = "provided to wear on site" (not paid/kept)
 - Reviews: NO fabricated reviews — hidden until real Google ones added
-- Party size: ideal 8-10 kids. Ages 3+. Only kids pay; adults/dads/watching free.
+- Party size: ideal 8-10 kids. Ages 4+ (corrected from an earlier 3+ — see
+  "Latest changes 2026-06-28" above). Only kids pay; adults/dads/watching free.
+  Venue capacity: 15 pax max total, kids + adults combined (see Party Quote
+  Builder capacity validation, 2026-07-15).
 - Theme: yellow hazard / construction (Anton + Saira Condensed + Hanken Grotesk)
